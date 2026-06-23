@@ -13,7 +13,7 @@
 <title>EstateHaven — Luxury Real Estate Marketplace</title>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"RealEstateAgent","name":"EstateHaven","priceRange":"₹₹₹₹","telephone":"+91-9876543210","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"}}
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"EstateHaven","priceRange":"₹₹₹₹","telephone":"+91-9870679850","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"}}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -155,6 +155,9 @@ header{
 .chip-row{grid-column:span 6;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .chip{padding:6px 14px;border-radius:999px;background:var(--bg-soft);font-size:.8rem;font-weight:500;cursor:pointer;transition:all var(--trans);border:1px solid transparent}
 .chip:hover,.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* Hide toggle on desktop */
+.toggle-adv-btn { display: none; }
 
 /* ============ Sections ============ */
 section{padding:80px 0}
@@ -394,6 +397,23 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   .pdp-gallery{grid-template-columns:1fr;grid-template-rows:260px}
   .pdp-gallery .g-item:not(:first-child){display:none}
   .pdp-gallery .g-item:first-child{grid-column:span 1}
+
+  /* Responsive Search Grid Collapse */
+  .search-grid .adv-filter { display: none; }
+  .search-grid.show-adv .adv-filter { display: flex; }
+  .toggle-adv-btn { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: var(--bg-soft); 
+    color: var(--text); 
+    border: 1px solid var(--border); 
+    border-radius: 999px; 
+    padding: 12px 20px; 
+    font-weight: 600; 
+    font-size: .95rem; 
+    gap: 8px; 
+  }
 }
 @media (max-width:480px){
   .logo small{display:none}
@@ -407,10 +427,8 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
 </head>
 <body>
 
-<!-- Loader -->
 <div id="loader"><div class="loader-logo">ESTATEHAVEN</div></div>
 
-<!-- Header -->
 <header>
   <div class="container nav">
     <a href="#" class="logo" data-page="home">
@@ -436,10 +454,8 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </header>
 
-<!-- ============ HOME PAGE ============ -->
 <div class="page active" id="page-home">
 
-  <!-- Hero -->
   <section class="hero" style="padding:0">
     <div class="hero-bg"></div>
     <div class="container hero-content">
@@ -454,7 +470,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
-  <!-- Search -->
   <div class="search-section">
     <div class="search-card">
       <div class="search-tabs">
@@ -463,22 +478,22 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
         <button class="search-tab" data-tab="commercial">Commercial</button>
         <button class="search-tab" data-tab="plots">Plots</button>
       </div>
-      <div class="search-grid">
+      <div class="search-grid" id="mainSearchGrid">
         <div class="search-field"><label>Location</label><input type="text" placeholder="City, locality or project" id="sLoc"/></div>
         <div class="search-field"><label>Property Type</label>
           <select id="sType"><option value="">All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option><option>Farmhouse</option><option>Plot</option><option>Commercial</option></select>
         </div>
-        <div class="search-field"><label>Budget</label>
+        <div class="search-field adv-filter"><label>Budget</label>
           <select id="sBudget"><option value="">Any Budget</option><option value="5000000">Under ₹50 Lakh</option><option value="10000000">Under ₹1 Cr</option><option value="25000000">Under ₹2.5 Cr</option><option value="50000000">Under ₹5 Cr</option><option value="100000000">Under ₹10 Cr</option><option value="999999999">₹10 Cr+</option></select>
         </div>
-        <div class="search-field"><label>Bedrooms</label>
+        <div class="search-field adv-filter"><label>Bedrooms</label>
           <select id="sBhk"><option value="">Any</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
         </div>
-        <div class="search-field"><label>Area (Sq.ft)</label><input type="number" placeholder="Min area" id="sArea"/></div>
-        <div class="search-field"><label>Status</label>
+        <div class="search-field adv-filter"><label>Area (Sq.ft)</label><input type="number" placeholder="Min area" id="sArea"/></div>
+        <div class="search-field adv-filter"><label>Status</label>
           <select id="sStatus"><option value="">Any</option><option>Ready to Move</option><option>Under Construction</option></select>
         </div>
-        <div class="chip-row">
+        <div class="chip-row adv-filter">
           <span class="chip" onclick="this.classList.toggle('active')">Ready to Move</span>
           <span class="chip" onclick="this.classList.toggle('active')">Under Construction</span>
           <span class="chip" onclick="this.classList.toggle('active')">For Sale</span>
@@ -487,14 +502,14 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
           <span class="chip" onclick="this.classList.toggle('active')">New Launch</span>
         </div>
         <div class="search-actions">
-          <button class="btn btn-outline"><i class="fas fa-rotate"></i> Reset</button>
+          <button class="toggle-adv-btn" onclick="document.getElementById('mainSearchGrid').classList.toggle('show-adv')"><i class="fas fa-sliders-h"></i> Filters</button>
+          <button class="btn btn-outline adv-filter"><i class="fas fa-rotate"></i> Reset</button>
           <button class="btn btn-primary" onclick="navigate('buy')"><i class="fas fa-search"></i> Search Properties</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Categories -->
   <section>
     <div class="container">
       <div class="section-head">
@@ -506,7 +521,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
-  <!-- Featured Properties -->
   <section style="background:var(--bg-soft)">
     <div class="container">
       <div class="section-head">
@@ -519,7 +533,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
-  <!-- Why Choose Us -->
   <section>
     <div class="container">
       <div class="section-head">
@@ -536,7 +549,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </section>
 </div>
 
-<!-- ============ LISTINGS PAGE ============ -->
 <div class="page" id="page-listings">
   <div class="container" style="padding-top:30px">
     <div class="breadcrumb">
@@ -613,7 +625,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
-<!-- ============ PROPERTY DETAIL PAGE ============ -->
 <div class="page" id="page-pdp">
   <div class="container" style="padding-top:30px">
     <div class="breadcrumb">
@@ -625,7 +636,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
-<!-- ============ ABOUT PAGE ============ -->
 <div class="page" id="page-about">
   <div class="container" style="padding:60px 0">
     <div class="section-head">
@@ -648,7 +658,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
-<!-- ============ CONTACT PAGE ============ -->
 <div class="page" id="page-contact">
   <div class="container" style="padding:60px 0">
     <div class="section-head">
@@ -659,8 +668,8 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px">
       <div style="display:flex;flex-direction:column;gap:18px">
         <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-location-dot"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Head Office</h4><p style="color:var(--text-soft);font-size:.9rem">EstateHaven Tower, BKC,<br/>Mumbai, Maharashtra 400051</p></div></div>
-        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-phone"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Call Us</h4><p style="color:var(--text-soft);font-size:.9rem">+91 98765 43210<br/>+91 22 4567 8900</p></div></div>
-        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-envelope"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Email</h4><p style="color:var(--text-soft);font-size:.9rem">hello@estatehaven.in<br/>sales@estatehaven.in</p></div></div>
+        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-phone"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Call Us</h4><p style="color:var(--text-soft);font-size:.9rem">+91 98706 79850</p></div></div>
+        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-envelope"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Email</h4><p style="color:var(--text-soft);font-size:.9rem">vianddtechnologies27@gmail.com</p></div></div>
       </div>
       <form style="padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)" onsubmit="event.preventDefault();showToast('Inquiry sent! Our agent will contact you shortly.')">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
@@ -679,7 +688,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
-<!-- ============ Lightbox ============ -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-xmark"></i></button>
   <div class="lb-tools">
@@ -694,14 +702,12 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   <div class="lb-thumbs" id="lbThumbs"></div>
 </div>
 
-<!-- ============ Compare Bar ============ -->
 <div class="compare-bar" id="compareBar">
   <div class="items" id="cmpItems"></div>
   <button class="btn btn-primary" onclick="showToast('Opening comparison view...')"><i class="fas fa-code-compare"></i> Compare</button>
   <button class="btn btn-outline" onclick="state.compare=[];save();updateBadges();toggleCompare()"><i class="fas fa-xmark"></i></button>
 </div>
 
-<!-- ============ Footer ============ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -742,8 +748,8 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <div><i class="fas fa-location-dot"></i><span>EstateHaven Tower, BKC, Mumbai 400051</span></div>
-        <div><i class="fas fa-phone"></i><span>+91 98765 43210</span></div>
-        <div><i class="fas fa-envelope"></i><span>hello@estatehaven.in</span></div>
+        <div><i class="fas fa-phone"></i><span>+91 98706 79850</span></div>
+        <div><i class="fas fa-envelope"></i><span>vianddtechnologies27@gmail.com</span></div>
         <div><i class="fas fa-clock"></i><span>Mon–Sun: 9AM – 9PM</span></div>
       </div>
     </div>
@@ -754,14 +760,12 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </footer>
 
-<!-- Floating -->
 <div class="floating">
-  <a href="https://wa.me/919876543210" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a href="tel:+919876543210" class="float-btn float-call" title="Call"><i class="fas fa-phone"></i></a>
+  <a href="https://wa.me/919870679850" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919870679850" class="float-btn float-call" title="Call"><i class="fas fa-phone"></i></a>
   <button class="float-btn float-top" id="toTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done</span></div>
 
 <script>
@@ -925,7 +929,7 @@ for(let i=0;i<160;i++){
     superBuilt: sqft,
     plotSize: type==='Plot'?sqft+' sqft':type==='Villa'?randInt(2000,6000)+' sqft':'N/A',
     images: imgs,
-    agent:{name:['Rajesh Sharma','Priya Kapoor','Arjun Mehta','Sneha Reddy','Vikram Singh','Ananya Iyer','Karan Patel','Meera Nair'][i%8], phone:'+91 98'+randInt(10000000,99999999), exp:randInt(3,18), listed:randInt(40,380)},
+    agent:{name:['Rajesh Sharma','Priya Kapoor','Arjun Mehta','Sneha Reddy','Vikram Singh','Ananya Iyer','Karan Patel','Meera Nair'][i%8], phone:'+91 9870679850', exp:randInt(3,18), listed:randInt(40,380)},
     description:`Experience the epitome of luxury living at ${getName(type)} in ${area}, ${loc.city}. This exquisite ${bhk} BHK ${type.toLowerCase()} offers ${sqft} sq.ft. of thoughtfully designed space with premium finishes, imported marble flooring, and floor-to-ceiling windows that flood every room with natural light. Located in one of ${loc.city}'s most prestigious neighborhoods, residents enjoy seamless connectivity to business districts, international schools, and world-class healthcare. The property features ${amenities.slice(0,4).join(', ')} and is crafted by the renowned ${builder}, ensuring unmatched quality and value appreciation.`
   });
 }
@@ -1173,7 +1177,6 @@ function openProperty(id){
           ${p.amenities.map(a=>`<div class="amenity"><i class="fas fa-${a==='Swimming Pool'?'water-ladder':a==='Gym'?'dumbbell':a==='Garden'?'tree':a==='Club House'?'champagne-glasses':a==='Children Park'?'child':a==='Jogging Track'?'person-running':a==='CCTV'?'video':a==='Security Guard'?'user-shield':a==='Power Backup'?'bolt':a==='WiFi'?'wifi':a==='Lift'?'elevator':a==='Fire Safety'?'fire-extinguisher':a==='Rain Water Harvesting'?'droplet':a==='Visitor Parking'?'square-parking':'paw'}"></i>${a}</div>`).join('')}
         </div>
 
-        <!-- Tabs -->
         <div class="tabs">
           <div class="tab-nav">
             <button class="tab-btn active" data-tab="overview">Overview</button>
@@ -1223,14 +1226,12 @@ function openProperty(id){
           </div>
         </div>
 
-        <!-- Related -->
         <h3 style="font-size:1.3rem;margin:40px 0 20px">Similar Properties</h3>
         <div class="property-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
           ${PROPERTIES.filter(x=>x.type===p.type && x.city===p.city && x.id!==p.id).slice(0,4).map(propertyCard).join('')}
         </div>
       </div>
 
-      <!-- Sidebar -->
       <div class="pdp-side">
         <div class="agent-card">
           <div class="agent-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="${p.agent.name}" loading="lazy"/></div>
@@ -1242,8 +1243,8 @@ function openProperty(id){
             <div><strong>4.9</strong><span>Rating</span></div>
           </div>
           <div class="agent-actions">
-            <a href="tel:${p.agent.phone.replace(/\s/g,'')}" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
-            <a href="https://wa.me/${p.agent.phone.replace(/[^0-9]/g,'')}" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:9870679850" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+            <a href="https://wa.me/919870679850" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             <button class="btn btn-outline" onclick="showToast('Visit scheduled! Agent will confirm shortly.')"><i class="fas fa-calendar-check"></i> Schedule Visit</button>
           </div>
         </div>
@@ -1413,4 +1414,3 @@ window.addEventListener('load',()=>{
 </script>
 </body>
 </html>
-
