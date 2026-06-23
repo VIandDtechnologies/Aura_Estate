@@ -139,9 +139,16 @@ header{
   background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
   box-shadow:var(--shadow-lg);padding:28px;
 }
-.search-tabs{display:flex;gap:4px;margin-bottom:22px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.search-tabs-container{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:22px; border-bottom:1px solid var(--border); padding-bottom: 4px;
+}
+.search-tabs{display:flex;gap:4px;flex-wrap:wrap;}
 .search-tab{padding:12px 20px;font-weight:600;font-size:.9rem;color:var(--text-soft);border-bottom:2px solid transparent;transition:all var(--trans)}
 .search-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+#mainSearchToggleBtn { font-size: 1.1rem; color: var(--text-soft); padding: 8px 12px; transition: all var(--trans); border-radius: 8px; }
+#mainSearchToggleBtn:hover { background: var(--bg-soft); color: var(--text); }
+
 .search-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 .search-field{display:flex;flex-direction:column;gap:6px}
 .search-field label{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-soft)}
@@ -151,13 +158,14 @@ header{
   transition:all var(--trans);
 }
 .search-field input:focus,.search-field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(30,79,216,.12)}
-.search-actions{grid-column:span 6;display:flex;gap:12px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+.search-actions{grid-column:span 6;display:flex;gap:12px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap; align-items: center;}
 .chip-row{grid-column:span 6;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .chip{padding:6px 14px;border-radius:999px;background:var(--bg-soft);font-size:.8rem;font-weight:500;cursor:pointer;transition:all var(--trans);border:1px solid transparent}
 .chip:hover,.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-/* Hide toggle on desktop */
-.toggle-adv-btn { display: none; }
+/* Hide Advanced Filters by default globally */
+.adv-filter { display: none !important; }
+.search-grid.show-adv .adv-filter { display: flex !important; }
 
 /* ============ Sections ============ */
 section{padding:80px 0}
@@ -397,23 +405,6 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   .pdp-gallery{grid-template-columns:1fr;grid-template-rows:260px}
   .pdp-gallery .g-item:not(:first-child){display:none}
   .pdp-gallery .g-item:first-child{grid-column:span 1}
-
-  /* Responsive Search Grid Collapse */
-  .search-grid .adv-filter { display: none; }
-  .search-grid.show-adv .adv-filter { display: flex; }
-  .toggle-adv-btn { 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: var(--bg-soft); 
-    color: var(--text); 
-    border: 1px solid var(--border); 
-    border-radius: 999px; 
-    padding: 12px 20px; 
-    font-weight: 600; 
-    font-size: .95rem; 
-    gap: 8px; 
-  }
 }
 @media (max-width:480px){
   .logo small{display:none}
@@ -422,13 +413,17 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   .property-grid{grid-template-columns:1fr}
   .search-grid{grid-template-columns:1fr}
   .search-actions,.chip-row{grid-column:span 1}
+  .search-tabs-container{flex-direction:column; align-items:flex-start; gap:10px}
+  #mainSearchToggleBtn{align-self:flex-end; margin-top:-40px;}
 }
 </style>
 </head>
 <body>
 
+<!-- Loader -->
 <div id="loader"><div class="loader-logo">ESTATEHAVEN</div></div>
 
+<!-- Header -->
 <header>
   <div class="container nav">
     <a href="#" class="logo" data-page="home">
@@ -454,8 +449,10 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </header>
 
+<!-- ============ HOME PAGE ============ -->
 <div class="page active" id="page-home">
 
+  <!-- Hero -->
   <section class="hero" style="padding:0">
     <div class="hero-bg"></div>
     <div class="container hero-content">
@@ -470,46 +467,62 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
+  <!-- Search -->
   <div class="search-section">
     <div class="search-card">
-      <div class="search-tabs">
-        <button class="search-tab active" data-tab="buy">Buy</button>
-        <button class="search-tab" data-tab="rent">Rent</button>
-        <button class="search-tab" data-tab="commercial">Commercial</button>
-        <button class="search-tab" data-tab="plots">Plots</button>
+      <div class="search-tabs-container">
+        <div class="search-tabs">
+          <button class="search-tab active" data-tab="buy">Buy</button>
+          <button class="search-tab" data-tab="rent">Rent</button>
+          <button class="search-tab" data-tab="commercial">Commercial</button>
+          <button class="search-tab" data-tab="plots">Plots</button>
+        </div>
+        <button class="btn" id="mainSearchToggleBtn" onclick="toggleMainSearch()" title="Show/Hide Search">
+          <i id="mainSearchIcon" class="fas fa-chevron-up"></i>
+        </button>
       </div>
-      <div class="search-grid" id="mainSearchGrid">
-        <div class="search-field"><label>Location</label><input type="text" placeholder="City, locality or project" id="sLoc"/></div>
-        <div class="search-field"><label>Property Type</label>
-          <select id="sType"><option value="">All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option><option>Farmhouse</option><option>Plot</option><option>Commercial</option></select>
-        </div>
-        <div class="search-field adv-filter"><label>Budget</label>
-          <select id="sBudget"><option value="">Any Budget</option><option value="5000000">Under ₹50 Lakh</option><option value="10000000">Under ₹1 Cr</option><option value="25000000">Under ₹2.5 Cr</option><option value="50000000">Under ₹5 Cr</option><option value="100000000">Under ₹10 Cr</option><option value="999999999">₹10 Cr+</option></select>
-        </div>
-        <div class="search-field adv-filter"><label>Bedrooms</label>
-          <select id="sBhk"><option value="">Any</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-        </div>
-        <div class="search-field adv-filter"><label>Area (Sq.ft)</label><input type="number" placeholder="Min area" id="sArea"/></div>
-        <div class="search-field adv-filter"><label>Status</label>
-          <select id="sStatus"><option value="">Any</option><option>Ready to Move</option><option>Under Construction</option></select>
-        </div>
-        <div class="chip-row adv-filter">
-          <span class="chip" onclick="this.classList.toggle('active')">Ready to Move</span>
-          <span class="chip" onclick="this.classList.toggle('active')">Under Construction</span>
-          <span class="chip" onclick="this.classList.toggle('active')">For Sale</span>
-          <span class="chip" onclick="this.classList.toggle('active')">For Rent</span>
-          <span class="chip" onclick="this.classList.toggle('active')">Verified</span>
-          <span class="chip" onclick="this.classList.toggle('active')">New Launch</span>
-        </div>
-        <div class="search-actions">
-          <button class="toggle-adv-btn" onclick="document.getElementById('mainSearchGrid').classList.toggle('show-adv')"><i class="fas fa-sliders-h"></i> Filters</button>
-          <button class="btn btn-outline adv-filter"><i class="fas fa-rotate"></i> Reset</button>
-          <button class="btn btn-primary" onclick="navigate('buy')"><i class="fas fa-search"></i> Search Properties</button>
+      
+      <!-- Main Collapsible Search Body -->
+      <div id="mainSearchBody">
+        <div class="search-grid" id="mainSearchGrid">
+          <div class="search-field"><label>Location</label><input type="text" placeholder="City, locality or project" id="sLoc"/></div>
+          <div class="search-field"><label>Property Type</label>
+            <select id="sType"><option value="">All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option><option>Farmhouse</option><option>Plot</option><option>Commercial</option></select>
+          </div>
+          <div class="search-field"><label>Budget</label>
+            <select id="sBudget"><option value="">Any Budget</option><option value="5000000">Under ₹50 Lakh</option><option value="10000000">Under ₹1 Cr</option><option value="25000000">Under ₹2.5 Cr</option><option value="50000000">Under ₹5 Cr</option><option value="100000000">Under ₹10 Cr</option><option value="999999999">₹10 Cr+</option></select>
+          </div>
+          
+          <!-- Advanced hidden by default -->
+          <div class="search-field adv-filter"><label>Bedrooms</label>
+            <select id="sBhk"><option value="">Any</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+          </div>
+          <div class="search-field adv-filter"><label>Area (Sq.ft)</label><input type="number" placeholder="Min area" id="sArea"/></div>
+          <div class="search-field adv-filter"><label>Status</label>
+            <select id="sStatus"><option value="">Any</option><option>Ready to Move</option><option>Under Construction</option></select>
+          </div>
+          <div class="chip-row adv-filter">
+            <span class="chip" onclick="this.classList.toggle('active')">Ready to Move</span>
+            <span class="chip" onclick="this.classList.toggle('active')">Under Construction</span>
+            <span class="chip" onclick="this.classList.toggle('active')">For Sale</span>
+            <span class="chip" onclick="this.classList.toggle('active')">For Rent</span>
+            <span class="chip" onclick="this.classList.toggle('active')">Verified</span>
+            <span class="chip" onclick="this.classList.toggle('active')">New Launch</span>
+          </div>
+          
+          <div class="search-actions">
+            <button class="btn btn-outline" onclick="toggleAdvancedSearch()">
+              <i id="toggleAdvIcon" class="fas fa-sliders-h"></i> <span id="toggleAdvText">More Filters</span>
+            </button>
+            <button class="btn btn-outline adv-filter" onclick="resetFilters()"><i class="fas fa-rotate"></i> Reset</button>
+            <button class="btn btn-primary" onclick="navigate('buy')"><i class="fas fa-search"></i> Search Properties</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Categories -->
   <section>
     <div class="container">
       <div class="section-head">
@@ -521,6 +534,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
+  <!-- Featured Properties -->
   <section style="background:var(--bg-soft)">
     <div class="container">
       <div class="section-head">
@@ -533,6 +547,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
     </div>
   </section>
 
+  <!-- Why Choose Us -->
   <section>
     <div class="container">
       <div class="section-head">
@@ -549,6 +564,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </section>
 </div>
 
+<!-- ============ LISTINGS PAGE ============ -->
 <div class="page" id="page-listings">
   <div class="container" style="padding-top:30px">
     <div class="breadcrumb">
@@ -625,6 +641,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
+<!-- ============ PROPERTY DETAIL PAGE ============ -->
 <div class="page" id="page-pdp">
   <div class="container" style="padding-top:30px">
     <div class="breadcrumb">
@@ -636,6 +653,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
+<!-- ============ ABOUT PAGE ============ -->
 <div class="page" id="page-about">
   <div class="container" style="padding:60px 0">
     <div class="section-head">
@@ -658,6 +676,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
+<!-- ============ CONTACT PAGE ============ -->
 <div class="page" id="page-contact">
   <div class="container" style="padding:60px 0">
     <div class="section-head">
@@ -688,6 +707,7 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </div>
 
+<!-- ============ Lightbox ============ -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-xmark"></i></button>
   <div class="lb-tools">
@@ -702,12 +722,14 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   <div class="lb-thumbs" id="lbThumbs"></div>
 </div>
 
+<!-- ============ Compare Bar ============ -->
 <div class="compare-bar" id="compareBar">
   <div class="items" id="cmpItems"></div>
   <button class="btn btn-primary" onclick="showToast('Opening comparison view...')"><i class="fas fa-code-compare"></i> Compare</button>
   <button class="btn btn-outline" onclick="state.compare=[];save();updateBadges();toggleCompare()"><i class="fas fa-xmark"></i></button>
 </div>
 
+<!-- ============ Footer ============ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -760,12 +782,14 @@ footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
   </div>
 </footer>
 
+<!-- Floating -->
 <div class="floating">
   <a href="https://wa.me/919870679850" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <a href="tel:+919870679850" class="float-btn float-call" title="Call"><i class="fas fa-phone"></i></a>
   <button class="float-btn float-top" id="toTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 </div>
 
+<!-- Toast -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done</span></div>
 
 <script>
@@ -956,6 +980,33 @@ const discount = (p,o)=>Math.round(((o-p)/o)*100);
 const stars = r => {const f=Math.floor(r);let s='';for(let i=0;i<5;i++)s+=i<f?'★':'☆';return s};
 const showToast = msg=>{const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)};
 
+/* ---------- Toggle Search Logic ---------- */
+function toggleAdvancedSearch(){
+  const grid = document.getElementById('mainSearchGrid');
+  grid.classList.toggle('show-adv');
+  const txt = document.getElementById('toggleAdvText');
+  const icon = document.getElementById('toggleAdvIcon');
+  if(grid.classList.contains('show-adv')){
+    txt.textContent = 'Less Filters';
+    icon.className = 'fas fa-chevron-up';
+  } else {
+    txt.textContent = 'More Filters';
+    icon.className = 'fas fa-sliders-h';
+  }
+}
+
+function toggleMainSearch(){
+  const body = document.getElementById('mainSearchBody');
+  const icon = document.getElementById('mainSearchIcon');
+  if(body.style.display === 'none'){
+    body.style.display = 'block';
+    icon.className = 'fas fa-chevron-up';
+  } else {
+    body.style.display = 'none';
+    icon.className = 'fas fa-chevron-down';
+  }
+}
+
 /* ---------- Render: Categories ---------- */
 function renderCategories(){
   document.getElementById('catGrid').innerHTML = CATEGORIES.map(c=>`
@@ -1039,6 +1090,16 @@ function resetFilters(){
   state.currentFilter = {category:'all',budget:'',bhk:[],types:[],status:[],furn:[],amen:[]};
   document.querySelectorAll('.filters input[type="checkbox"]').forEach(c=>c.checked=false);
   document.querySelector('input[name="budget"][value=""]').checked = true;
+  
+  // also reset advanced filter form if on home page
+  document.getElementById('sLoc').value = '';
+  document.getElementById('sType').value = '';
+  document.getElementById('sBudget').value = '';
+  document.getElementById('sBhk').value = '';
+  document.getElementById('sArea').value = '';
+  document.getElementById('sStatus').value = '';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+
   renderListings();
 }
 function getFiltered(){
@@ -1177,6 +1238,7 @@ function openProperty(id){
           ${p.amenities.map(a=>`<div class="amenity"><i class="fas fa-${a==='Swimming Pool'?'water-ladder':a==='Gym'?'dumbbell':a==='Garden'?'tree':a==='Club House'?'champagne-glasses':a==='Children Park'?'child':a==='Jogging Track'?'person-running':a==='CCTV'?'video':a==='Security Guard'?'user-shield':a==='Power Backup'?'bolt':a==='WiFi'?'wifi':a==='Lift'?'elevator':a==='Fire Safety'?'fire-extinguisher':a==='Rain Water Harvesting'?'droplet':a==='Visitor Parking'?'square-parking':'paw'}"></i>${a}</div>`).join('')}
         </div>
 
+        <!-- Tabs -->
         <div class="tabs">
           <div class="tab-nav">
             <button class="tab-btn active" data-tab="overview">Overview</button>
@@ -1226,12 +1288,14 @@ function openProperty(id){
           </div>
         </div>
 
+        <!-- Related -->
         <h3 style="font-size:1.3rem;margin:40px 0 20px">Similar Properties</h3>
         <div class="property-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
           ${PROPERTIES.filter(x=>x.type===p.type && x.city===p.city && x.id!==p.id).slice(0,4).map(propertyCard).join('')}
         </div>
       </div>
 
+      <!-- Sidebar -->
       <div class="pdp-side">
         <div class="agent-card">
           <div class="agent-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="${p.agent.name}" loading="lazy"/></div>
