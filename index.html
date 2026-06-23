@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="EstateHaven — India's premium luxury real estate marketplace. Buy, sell & rent villas, apartments, penthouses, farmhouses, commercial spaces & plots."/>
+<meta name="keywords" content="luxury real estate, villas India, apartments, penthouses, farmhouses, commercial property, plots, buy rent sell"/>
+<meta name="author" content="EstateHaven"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="EstateHaven — Luxury Real Estate Marketplace"/>
+<meta property="og:description" content="Find your dream home. Premium villas, apartments, penthouses & commercial spaces across India."/>
+<meta property="og:type" content="website"/>
+<title>EstateHaven — Luxury Real Estate Marketplace</title>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"EstateHaven","priceRange":"₹₹₹₹","telephone":"+91-9876543210","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"}}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+/* ============ ESTATEHAVEN — LUXURY CSS ============ */
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f6f7fb;
+  --surface:#ffffff;
+  --text:#0d1117;
+  --text-soft:#5b6478;
+  --border:#e7eaf2;
+  --blue:#1e4fd8;
+  --blue-2:#3b6cff;
+  --gold:#c9a24a;
+  --gold-2:#e6c878;
+  --dark:#0d1117;
+  --success:#1f9d55;
+  --danger:#d93636;
+  --shadow-sm:0 2px 8px rgba(13,17,23,.05);
+  --shadow-md:0 10px 30px rgba(13,17,23,.08);
+  --shadow-lg:0 24px 60px rgba(13,17,23,.14);
+  --radius:16px;
+  --radius-lg:24px;
+  --glass:rgba(255,255,255,.72);
+  --glass-border:rgba(255,255,255,.8);
+  --trans:.4s cubic-bezier(.2,.7,.2,1);
+}
+[data-theme="dark"]{
+  --bg:#0a0d14;
+  --bg-soft:#11151f;
+  --surface:#141925;
+  --text:#eef1f7;
+  --text-soft:#9aa3b5;
+  --border:#232a3a;
+  --dark:#0a0d14;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.4);
+  --shadow-md:0 10px 30px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.7);
+  --glass:rgba(20,25,37,.65);
+  --glass-border:rgba(255,255,255,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.55;overflow-x:hidden;
+  transition:background var(--trans),color var(--trans);
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.container{max-width:1360px;margin:0 auto;padding:0 24px}
+
+/* ============ Loader ============ */
+#loader{position:fixed;inset:0;background:var(--dark);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .6s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-logo{font-family:'Playfair Display',serif;color:#fff;font-size:2rem;letter-spacing:.15em;position:relative}
+.loader-logo::after{content:"";position:absolute;left:0;bottom:-12px;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-2));animation:bar 1.4s ease forwards}
+@keyframes bar{to{width:100%}}
+
+/* ============ Header ============ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+  transition:all var(--trans);
+}
+.nav{display:flex;align-items:center;gap:28px;padding:16px 0}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Playfair Display',serif;font-weight:800;font-size:1.4rem}
+.logo-mark{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--gold));
+  display:grid;place-items:center;color:#fff;font-weight:900;
+  box-shadow:0 8px 20px rgba(30,79,216,.35);
+}
+.logo small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.3em;color:var(--text-soft);text-transform:uppercase}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{padding:10px 16px;border-radius:10px;font-size:.92rem;font-weight:500;transition:all var(--trans)}
+.nav-links a:hover,.nav-links a.active{background:var(--bg-soft);color:var(--blue)}
+.nav-icons{display:flex;align-items:center;gap:4px}
+.icon-btn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;position:relative;transition:all var(--trans)}
+.icon-btn:hover{background:var(--bg-soft);color:var(--blue)}
+.badge{position:absolute;top:4px;right:4px;min-width:18px;height:18px;padding:0 5px;background:var(--gold);color:#1a1a1a;font-size:.68rem;font-weight:700;border-radius:999px;display:grid;place-items:center}
+.menu-toggle{display:none}
+
+/* ============ Hero ============ */
+.hero{
+  position:relative;min-height:720px;display:flex;align-items:center;
+  overflow:hidden;isolation:isolate;
+}
+.hero-bg{position:absolute;inset:0;z-index:-1;background:url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80') center/cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,13,20,.88) 0%,rgba(10,13,20,.55) 55%,rgba(10,13,20,.2) 100%)}
+.hero-content{color:#fff;max-width:780px;padding:100px 0;animation:fadeUp 1s ease}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid rgba(255,255,255,.25);border-radius:999px;font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-2);margin-bottom:24px;backdrop-filter:blur(8px)}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.4rem);margin-bottom:20px;background:linear-gradient(135deg,#fff 0%,var(--gold-2) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.12rem;color:#d8dce3;margin-bottom:36px;max-width:620px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:999px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:10px;transition:all var(--trans);cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(30,79,216,.45)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1a1a}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(201,162,74,.45)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:rgba(255,255,255,.15);border-color:var(--gold-2)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ Search Section ============ */
+.search-section{
+  margin-top:-60px;position:relative;z-index:5;padding:0 24px;
+}
+.search-card{
+  max-width:1280px;margin:0 auto;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);padding:28px;
+}
+.search-tabs{display:flex;gap:4px;margin-bottom:22px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.search-tab{padding:12px 20px;font-weight:600;font-size:.9rem;color:var(--text-soft);border-bottom:2px solid transparent;transition:all var(--trans)}
+.search-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.search-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.search-field{display:flex;flex-direction:column;gap:6px}
+.search-field label{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-soft)}
+.search-field input,.search-field select{
+  padding:12px 14px;border:1px solid var(--border);border-radius:12px;
+  background:var(--bg);color:var(--text);font-family:inherit;font-size:.9rem;
+  transition:all var(--trans);
+}
+.search-field input:focus,.search-field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(30,79,216,.12)}
+.search-actions{grid-column:span 6;display:flex;gap:12px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+.chip-row{grid-column:span 6;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.chip{padding:6px 14px;border-radius:999px;background:var(--bg-soft);font-size:.8rem;font-weight:500;cursor:pointer;transition:all var(--trans);border:1px solid transparent}
+.chip:hover,.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ============ Sections ============ */
+section{padding:80px 0}
+.section-head{text-align:center;margin-bottom:48px}
+.section-head .eyebrow{display:inline-block;color:var(--blue);font-size:.78rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;margin-bottom:12px}
+[data-theme="dark"] .section-head .eyebrow{color:var(--gold-2)}
+.section-head h2{font-size:clamp(1.9rem,3.8vw,2.8rem);margin-bottom:12px}
+.section-head p{color:var(--text-soft);max-width:640px;margin:0 auto}
+
+/* ============ Categories ============ */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.cat-card{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  aspect-ratio:4/5;cursor:pointer;transition:transform var(--trans);
+  border:1px solid var(--border);
+}
+.cat-card:hover{transform:translateY(-6px)}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.cat-card:hover img{transform:scale(1.08)}
+.cat-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,13,20,.9) 100%)}
+.cat-card .label{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;z-index:2}
+.cat-card .label h3{font-size:1.1rem;margin-bottom:2px}
+.cat-card .label span{font-size:.72rem;color:var(--gold-2);letter-spacing:.15em;text-transform:uppercase}
+.cat-card .count{position:absolute;top:14px;right:14px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.9);color:#111;font-size:.72rem;font-weight:700;z-index:2}
+
+/* ============ Property Cards ============ */
+.property-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.property-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  overflow:hidden;transition:all var(--trans);position:relative;
+  display:flex;flex-direction:column;
+}
+.property-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--blue)}
+.pc-media{position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--bg-soft)}
+.pc-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.property-card:hover .pc-media img{transform:scale(1.06)}
+.pc-badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
+.pc-badge{padding:5px 10px;border-radius:8px;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.pc-badge.feat{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1a1a}
+.pc-badge.new{background:var(--blue);color:#fff}
+.pc-badge.verified{background:rgba(31,157,85,.92);color:#fff}
+.pc-badge.rtm{background:rgba(255,255,255,.92);color:#111}
+.pc-actions{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px;z-index:2}
+.pc-act{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:#111;transition:all var(--trans);font-size:.85rem}
+.pc-act:hover{background:var(--blue);color:#fff;transform:scale(1.1)}
+.pc-act.active{background:var(--danger);color:#fff}
+.pc-price-tag{position:absolute;bottom:14px;left:14px;padding:8px 14px;border-radius:10px;background:rgba(10,13,20,.85);color:#fff;backdrop-filter:blur(8px);z-index:2}
+.pc-price-tag strong{font-size:1.15rem;font-family:'Playfair Display',serif;color:var(--gold-2)}
+.pc-price-tag small{display:block;font-size:.68rem;color:#b8bdc7;letter-spacing:.1em}
+.pc-info{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pc-type{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);font-weight:600}
+[data-theme="dark"] .pc-type{color:var(--gold-2)}
+.pc-title{font-size:1.15rem;font-weight:700;font-family:'Playfair Display',serif;line-height:1.3}
+.pc-loc{font-size:.85rem;color:var(--text-soft);display:flex;align-items:center;gap:6px}
+.pc-loc i{color:var(--blue)}
+.pc-specs{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:.82rem;color:var(--text-soft);flex-wrap:wrap}
+.pc-specs span{display:flex;align-items:center;gap:5px}
+.pc-specs i{color:var(--blue);font-size:.85rem}
+.pc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.pc-rating{display:flex;align-items:center;gap:6px;font-size:.82rem}
+.stars{color:var(--gold);letter-spacing:1px}
+.pc-foot-btns{display:flex;gap:6px}
+.pc-foot-btns button{padding:6px 12px;border-radius:8px;font-size:.78rem;font-weight:600;background:var(--bg-soft);color:var(--text);transition:all var(--trans)}
+.pc-foot-btns button:hover{background:var(--blue);color:#fff}
+.load-more{display:flex;justify-content:center;margin-top:40px}
+
+/* ============ Listings Page ============ */
+.page{display:none}
+.page.active{display:block}
+.breadcrumb{padding:20px 0;font-size:.85rem;color:var(--text-soft)}
+.breadcrumb a{color:var(--text-soft)}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{margin:0 8px}
+.shop-layout{display:grid;grid-template-columns:300px 1fr;gap:32px}
+.filters{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;height:fit-content;position:sticky;top:110px;
+}
+.filter-group{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.filter-group:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.filter-group h4{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;color:var(--text)}
+.filter-group label{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:.88rem;color:var(--text-soft);cursor:pointer;transition:color var(--trans)}
+.filter-group label:hover{color:var(--text)}
+.filter-group input[type="checkbox"],.filter-group input[type="radio"]{accent-color:var(--blue);width:16px;height:16px}
+.shop-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);flex-wrap:wrap;gap:12px}
+.shop-toolbar .count{font-size:.9rem;color:var(--text-soft)}
+.shop-toolbar select{padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:.88rem;cursor:pointer}
+
+/* ============ Property Detail ============ */
+.pdp-gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:10px;border-radius:var(--radius-lg);overflow:hidden;margin-bottom:30px}
+.pdp-gallery .g-item{position:relative;overflow:hidden;cursor:pointer}
+.pdp-gallery .g-item:first-child{grid-row:span 2}
+.pdp-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.pdp-gallery .g-item:hover img{transform:scale(1.05)}
+.pdp-gallery .g-more{position:absolute;inset:0;background:rgba(10,13,20,.7);display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.1rem;backdrop-filter:blur(4px)}
+
+.pdp-layout{display:grid;grid-template-columns:1.6fr 1fr;gap:36px}
+.pdp-main h1{font-size:2rem;margin-bottom:10px}
+.pdp-loc{color:var(--text-soft);font-size:.95rem;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.pdp-loc i{color:var(--blue)}
+.pdp-badges{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.pdp-price-box{padding:24px;background:var(--bg-soft);border-radius:var(--radius);margin-bottom:24px;border:1px solid var(--border)}
+.pdp-price-box .now{font-size:2.4rem;font-weight:800;font-family:'Playfair Display',serif;color:var(--text)}
+.pdp-price-box .emi{color:var(--text-soft);font-size:.9rem;margin-top:6px}
+.pdp-price-box .emi strong{color:var(--blue)}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.spec-item{padding:14px 16px;background:var(--bg-soft);border-radius:12px;display:flex;justify-content:space-between;font-size:.88rem}
+.spec-item span:first-child{color:var(--text-soft)}
+.spec-item span:last-child{font-weight:600}
+.pdp-amenities{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:24px}
+.amenity{padding:14px;background:var(--bg-soft);border-radius:12px;display:flex;align-items:center;gap:10px;font-size:.88rem;transition:all var(--trans)}
+.amenity:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.amenity i{color:var(--blue);width:20px}
+.amenity:hover i{color:#fff}
+
+/* Sidebar */
+.pdp-side{display:flex;flex-direction:column;gap:20px}
+.agent-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center}
+.agent-photo{width:90px;height:90px;border-radius:50%;margin:0 auto 14px;overflow:hidden;border:3px solid var(--gold);padding:3px;background:#fff}
+.agent-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.agent-card h4{font-size:1.15rem;margin-bottom:4px}
+.agent-card .role{font-size:.78rem;color:var(--text-soft);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.agent-stats{display:flex;justify-content:space-around;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px}
+.agent-stats div strong{display:block;font-size:1.2rem;font-family:'Playfair Display',serif;color:var(--blue)}
+.agent-stats div span{font-size:.72rem;color:var(--text-soft);letter-spacing:.1em;text-transform:uppercase}
+.agent-actions{display:grid;gap:8px}
+.agent-actions .btn{justify-content:center;padding:12px;font-size:.88rem}
+
+.emi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px}
+.emi-card h4{font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.emi-card h4 i{color:var(--gold)}
+.emi-field{margin-bottom:14px}
+.emi-field label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;color:var(--text-soft)}
+.emi-field label strong{color:var(--text)}
+.emi-field input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font-family:inherit}
+.emi-result{padding:16px;background:linear-gradient(135deg,var(--blue),var(--blue-2));border-radius:12px;color:#fff;text-align:center;margin-top:10px}
+.emi-result .lbl{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;opacity:.85}
+.emi-result .val{font-size:1.6rem;font-family:'Playfair Display',serif;font-weight:700;margin-top:4px}
+
+/* Tabs */
+.tabs{margin-top:50px}
+.tab-nav{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto}
+.tab-btn{padding:14px 22px;font-weight:600;font-size:.92rem;color:var(--text-soft);border-bottom:2px solid transparent;transition:all var(--trans);white-space:nowrap}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+[data-theme="dark"] .tab-btn.active{color:var(--gold-2);border-bottom-color:var(--gold-2)}
+.tab-content{display:none;animation:fadeUp .4s ease}
+.tab-content.active{display:block}
+.tab-content p{color:var(--text-soft);margin-bottom:14px;line-height:1.8}
+.review{padding:20px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px}
+.review-head{display:flex;justify-content:space-between;margin-bottom:10px;align-items:center}
+.review-head strong{font-size:.95rem}
+.review-head .date{font-size:.78rem;color:var(--text-soft)}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background var(--trans)}
+.faq-q:hover{background:var(--bg-soft)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;color:var(--text-soft);transition:all var(--trans)}
+.faq-item.open .faq-a{padding:0 20px 16px;max-height:300px}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+
+/* Gallery lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:500;display:none;align-items:center;justify-content:center;flex-direction:column}
+.lightbox.active{display:flex}
+.lb-close{position:absolute;top:20px;right:20px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;font-size:1.2rem;cursor:pointer;z-index:2}
+.lb-main{max-width:90vw;max-height:70vh;position:relative}
+.lb-main img{max-width:90vw;max-height:70vh;object-fit:contain;border-radius:12px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:grid;place-items:center;cursor:pointer;transition:all var(--trans)}
+.lb-nav:hover{background:var(--gold);color:#111}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+.lb-thumbs{display:flex;gap:8px;margin-top:20px;max-width:90vw;overflow-x:auto;padding:10px 0}
+.lb-thumbs img{width:80px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.5;transition:all var(--trans);border:2px solid transparent;flex-shrink:0}
+.lb-thumbs img:hover,.lb-thumbs img.active{opacity:1;border-color:var(--gold)}
+.lb-tools{position:absolute;top:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
+.lb-tools button{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer;transition:all var(--trans)}
+.lb-tools button:hover{background:var(--gold);color:#111}
+
+/* ============ Compare Modal ============ */
+.compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:16px 24px;display:none;align-items:center;gap:16px;z-index:90;box-shadow:var(--shadow-lg)}
+.compare-bar.active{display:flex}
+.compare-bar .items{display:flex;gap:12px;flex:1;overflow-x:auto}
+.compare-bar .ci{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-soft);border-radius:12px;min-width:200px}
+.compare-bar .ci img{width:50px;height:50px;border-radius:8px;object-fit:cover}
+.compare-bar .ci h5{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600}
+.compare-bar .ci button{color:var(--danger);margin-left:auto}
+
+/* ============ Footer ============ */
+footer{background:var(--dark);color:#cfd3dc;padding:70px 0 0;margin-top:60px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px}
+.footer-col h4{font-family:'Inter',sans-serif;color:#fff;font-size:.88rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
+.footer-col ul{list-style:none;display:grid;gap:10px}
+.footer-col a{color:#9aa3b2;font-size:.9rem;transition:color var(--trans)}
+.footer-col a:hover{color:var(--gold-2)}
+.footer-about p{color:#9aa3b2;font-size:.9rem;line-height:1.75;margin:14px 0 20px}
+.social{display:flex;gap:10px}
+.social a{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:#cfd3dc;transition:all var(--trans)}
+.social a:hover{background:var(--gold);color:#1a1a1a;transform:translateY(-2px)}
+.footer-contact div{display:flex;gap:12px;margin-bottom:12px;font-size:.9rem;color:#9aa3b2}
+.footer-contact i{color:var(--gold-2);width:18px;margin-top:3px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:24px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;color:#8a92a1}
+
+/* ============ Floating ============ */
+.floating{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;flex-direction:column;gap:12px}
+.float-btn{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.2rem;box-shadow:var(--shadow-lg);transition:all var(--trans)}
+.float-btn:hover{transform:scale(1.1)}
+.float-wa{background:#25D366}
+.float-call{background:var(--blue)}
+.float-top{background:var(--dark);color:#fff;opacity:0;pointer-events:none;transition:opacity var(--trans)}
+.float-top.show{opacity:1;pointer-events:auto}
+
+/* ============ Toast ============ */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:14px 22px;border-radius:999px;font-size:.9rem;z-index:600;opacity:0;transition:all var(--trans);display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--gold-2)}
+
+/* ============ Responsive ============ */
+@media (max-width:1100px){
+  .search-grid{grid-template-columns:repeat(3,1fr)}
+  .search-actions,.chip-row{grid-column:span 3}
+  .shop-layout{grid-template-columns:1fr}
+  .filters{position:static}
+  .pdp-layout{grid-template-columns:1fr}
+  .pdp-side{position:static}
+  .pdp-gallery{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px}
+  .pdp-gallery .g-item:first-child{grid-column:span 2;grid-row:span 1}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .nav-links{display:none}
+  .menu-toggle{display:grid}
+  .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--surface);flex-direction:column;padding:14px;border-top:1px solid var(--border)}
+  .search-grid{grid-template-columns:1fr 1fr}
+  .search-actions,.chip-row{grid-column:span 2}
+  section{padding:60px 0}
+  .hero{min-height:600px}
+  .footer-grid{grid-template-columns:1fr}
+  .spec-grid{grid-template-columns:1fr}
+  .pdp-gallery{grid-template-columns:1fr;grid-template-rows:260px}
+  .pdp-gallery .g-item:not(:first-child){display:none}
+  .pdp-gallery .g-item:first-child{grid-column:span 1}
+}
+@media (max-width:480px){
+  .logo small{display:none}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%;justify-content:center}
+  .property-grid{grid-template-columns:1fr}
+  .search-grid{grid-template-columns:1fr}
+  .search-actions,.chip-row{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader"><div class="loader-logo">ESTATEHAVEN</div></div>
+
+<!-- Header -->
+<header>
+  <div class="container nav">
+    <a href="#" class="logo" data-page="home">
+      <div class="logo-mark"><i class="fas fa-building"></i></div>
+      <div>EstateHaven<small>Luxury Real Estate</small></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#" data-page="home" class="active">Home</a>
+      <a href="#" data-page="buy">Buy</a>
+      <a href="#" data-page="rent">Rent</a>
+      <a href="#" data-page="commercial">Commercial</a>
+      <a href="#" data-page="plots">Plots</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+    </nav>
+    <div class="nav-icons">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" title="Wishlist" onclick="showToast('Wishlist: '+state.wish.length+' properties')"><i class="far fa-heart"></i><span class="badge" id="wishBadge">0</span></button>
+      <button class="icon-btn" title="Compare" onclick="toggleCompare()"><i class="fas fa-code-compare"></i><span class="badge" id="cmpBadge">0</span></button>
+      <button class="icon-btn" title="Account"><i class="far fa-user"></i></button>
+      <button class="icon-btn menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero" style="padding:0">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow">✦ India's #1 Luxury Property Marketplace</div>
+      <h1>Find Your Dream Home & Property</h1>
+      <p>Buy, Sell & Rent Luxury Homes, Villas, Apartments, Commercial Spaces & Plots — curated by India's most trusted property experts.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="navigate('buy')"><i class="fas fa-search"></i> Explore Properties</button>
+        <button class="btn btn-gold" onclick="navigate('contact')"><i class="fas fa-user-tie"></i> Contact Agent</button>
+        <button class="btn btn-ghost" onclick="showToast('Visit booking form opened')"><i class="fas fa-calendar-check"></i> Book Visit</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search -->
+  <div class="search-section">
+    <div class="search-card">
+      <div class="search-tabs">
+        <button class="search-tab active" data-tab="buy">Buy</button>
+        <button class="search-tab" data-tab="rent">Rent</button>
+        <button class="search-tab" data-tab="commercial">Commercial</button>
+        <button class="search-tab" data-tab="plots">Plots</button>
+      </div>
+      <div class="search-grid">
+        <div class="search-field"><label>Location</label><input type="text" placeholder="City, locality or project" id="sLoc"/></div>
+        <div class="search-field"><label>Property Type</label>
+          <select id="sType"><option value="">All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option><option>Farmhouse</option><option>Plot</option><option>Commercial</option></select>
+        </div>
+        <div class="search-field"><label>Budget</label>
+          <select id="sBudget"><option value="">Any Budget</option><option value="5000000">Under ₹50 Lakh</option><option value="10000000">Under ₹1 Cr</option><option value="25000000">Under ₹2.5 Cr</option><option value="50000000">Under ₹5 Cr</option><option value="100000000">Under ₹10 Cr</option><option value="999999999">₹10 Cr+</option></select>
+        </div>
+        <div class="search-field"><label>Bedrooms</label>
+          <select id="sBhk"><option value="">Any</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="search-field"><label>Area (Sq.ft)</label><input type="number" placeholder="Min area" id="sArea"/></div>
+        <div class="search-field"><label>Status</label>
+          <select id="sStatus"><option value="">Any</option><option>Ready to Move</option><option>Under Construction</option></select>
+        </div>
+        <div class="chip-row">
+          <span class="chip" onclick="this.classList.toggle('active')">Ready to Move</span>
+          <span class="chip" onclick="this.classList.toggle('active')">Under Construction</span>
+          <span class="chip" onclick="this.classList.toggle('active')">For Sale</span>
+          <span class="chip" onclick="this.classList.toggle('active')">For Rent</span>
+          <span class="chip" onclick="this.classList.toggle('active')">Verified</span>
+          <span class="chip" onclick="this.classList.toggle('active')">New Launch</span>
+        </div>
+        <div class="search-actions">
+          <button class="btn btn-outline"><i class="fas fa-rotate"></i> Reset</button>
+          <button class="btn btn-primary" onclick="navigate('buy')"><i class="fas fa-search"></i> Search Properties</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Browse by Category</span>
+        <h2>Explore Property Types</h2>
+        <p>From luxury villas to commercial spaces — find the perfect property that matches your lifestyle and investment goals.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section style="background:var(--bg-soft)">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Handpicked for You</span>
+        <h2>Featured Luxury Properties</h2>
+        <p>Exclusive listings curated by our expert agents — the finest addresses across India.</p>
+      </div>
+      <div class="property-grid" id="featuredGrid"></div>
+      <div class="load-more"><button class="btn btn-outline" onclick="navigate('buy')"><i class="fas fa-arrow-right"></i> View All Properties</button></div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why EstateHaven</span>
+        <h2>Trusted by 2 Lakh+ Families</h2>
+      </div>
+      <div class="cat-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        <div class="amenity" style="flex-direction:column;text-align:center;padding:28px"><i class="fas fa-shield-halved" style="font-size:1.8rem;color:var(--blue);margin-bottom:10px"></i><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:6px">100% Verified</h4><p style="color:var(--text-soft);font-size:.88rem">Every property legally verified by our team.</p></div>
+        <div class="amenity" style="flex-direction:column;text-align:center;padding:28px"><i class="fas fa-user-tie" style="font-size:1.8rem;color:var(--blue);margin-bottom:10px"></i><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:6px">Expert Agents</h4><p style="color:var(--text-soft);font-size:.88rem">5000+ certified property consultants.</p></div>
+        <div class="amenity" style="flex-direction:column;text-align:center;padding:28px"><i class="fas fa-vr-cardboard" style="font-size:1.8rem;color:var(--blue);margin-bottom:10px"></i><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:6px">Virtual Tours</h4><p style="color:var(--text-soft);font-size:.88rem">360° walkthroughs from your home.</p></div>
+        <div class="amenity" style="flex-direction:column;text-align:center;padding:28px"><i class="fas fa-hand-holding-dollar" style="font-size:1.8rem;color:var(--blue);margin-bottom:10px"></i><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:6px">Best Price Guarantee</h4><p style="color:var(--text-soft);font-size:.88rem">Zero brokerage on select premium listings.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ LISTINGS PAGE ============ -->
+<div class="page" id="page-listings">
+  <div class="container" style="padding-top:30px">
+    <div class="breadcrumb">
+      <a href="#" data-page="home">Home</a><span>/</span><span id="listTitle">Properties</span>
+    </div>
+    <div class="section-head" style="text-align:left;margin-bottom:30px">
+      <span class="eyebrow" id="listEyebrow">Collection</span>
+      <h2 id="listHeading">All Properties</h2>
+    </div>
+    <div class="shop-layout">
+      <aside class="filters">
+        <div class="filter-group">
+          <h4>Budget Range</h4>
+          <label><input type="radio" name="budget" value="" checked onchange="applyFilters()"/> Any Budget</label>
+          <label><input type="radio" name="budget" value="5000000" onchange="applyFilters()"/> Under ₹50 Lakh</label>
+          <label><input type="radio" name="budget" value="10000000" onchange="applyFilters()"/> Under ₹1 Cr</label>
+          <label><input type="radio" name="budget" value="25000000" onchange="applyFilters()"/> Under ₹2.5 Cr</label>
+          <label><input type="radio" name="budget" value="50000000" onchange="applyFilters()"/> Under ₹5 Cr</label>
+          <label><input type="radio" name="budget" value="100000000" onchange="applyFilters()"/> Under ₹10 Cr</label>
+          <label><input type="radio" name="budget" value="999999999" onchange="applyFilters()"/> ₹10 Cr+</label>
+        </div>
+        <div class="filter-group">
+          <h4>Bedrooms</h4>
+          <label><input type="checkbox" class="bhk-filter" value="1"/> 1 BHK</label>
+          <label><input type="checkbox" class="bhk-filter" value="2"/> 2 BHK</label>
+          <label><input type="checkbox" class="bhk-filter" value="3"/> 3 BHK</label>
+          <label><input type="checkbox" class="bhk-filter" value="4"/> 4 BHK</label>
+          <label><input type="checkbox" class="bhk-filter" value="5"/> 5+ BHK</label>
+        </div>
+        <div class="filter-group">
+          <h4>Property Type</h4>
+          <label><input type="checkbox" class="type-filter" value="Villa"/> Villa</label>
+          <label><input type="checkbox" class="type-filter" value="Apartment"/> Apartment</label>
+          <label><input type="checkbox" class="type-filter" value="Penthouse"/> Penthouse</label>
+          <label><input type="checkbox" class="type-filter" value="Farmhouse"/> Farmhouse</label>
+          <label><input type="checkbox" class="type-filter" value="Plot"/> Plot</label>
+          <label><input type="checkbox" class="type-filter" value="Commercial"/> Commercial</label>
+        </div>
+        <div class="filter-group">
+          <h4>Status</h4>
+          <label><input type="checkbox" class="status-filter" value="Ready to Move"/> Ready to Move</label>
+          <label><input type="checkbox" class="status-filter" value="Under Construction"/> Under Construction</label>
+        </div>
+        <div class="filter-group">
+          <h4>Furnishing</h4>
+          <label><input type="checkbox" class="furn-filter" value="Unfurnished"/> Unfurnished</label>
+          <label><input type="checkbox" class="furn-filter" value="Semi-Furnished"/> Semi-Furnished</label>
+          <label><input type="checkbox" class="furn-filter" value="Fully Furnished"/> Fully Furnished</label>
+        </div>
+        <div class="filter-group">
+          <h4>Amenities</h4>
+          <label><input type="checkbox" class="amen-filter" value="Swimming Pool"/> Swimming Pool</label>
+          <label><input type="checkbox" class="amen-filter" value="Gym"/> Gym</label>
+          <label><input type="checkbox" class="amen-filter" value="Garden"/> Garden</label>
+          <label><input type="checkbox" class="amen-filter" value="Club House"/> Club House</label>
+          <label><input type="checkbox" class="amen-filter" value="Power Backup"/> Power Backup</label>
+        </div>
+        <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="resetFilters()"><i class="fas fa-rotate"></i> Reset Filters</button>
+      </aside>
+      <div>
+        <div class="shop-toolbar">
+          <div class="count"><span id="propCount">0</span> properties found</div>
+          <select id="sortSelect" onchange="renderListings()">
+            <option value="featured">Sort: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="new">Newest</option>
+            <option value="popular">Most Popular</option>
+          </select>
+        </div>
+        <div class="property-grid" id="listGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PROPERTY DETAIL PAGE ============ -->
+<div class="page" id="page-pdp">
+  <div class="container" style="padding-top:30px">
+    <div class="breadcrumb">
+      <a href="#" data-page="home">Home</a><span>/</span>
+      <a href="#" id="pdpCatLink">Properties</a><span>/</span>
+      <span id="pdpCrumb">Property</span>
+    </div>
+    <div id="pdpContent"></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT PAGE ============ -->
+<div class="page" id="page-about">
+  <div class="container" style="padding:60px 0">
+    <div class="section-head">
+      <span class="eyebrow">About EstateHaven</span>
+      <h2>India's Most Trusted Luxury Property Platform</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/5"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="About" loading="lazy" style="width:100%;height:100%;object-fit:cover"/></div>
+      <div>
+        <h2 style="font-size:2rem;margin-bottom:18px">Redefining Real Estate Since 2010</h2>
+        <p style="color:var(--text-soft);margin-bottom:14px;line-height:1.8">EstateHaven is India's premier luxury real estate marketplace, connecting discerning buyers with the finest properties across the nation. From sea-facing penthouses in Mumbai to heritage villas in Jaipur, from tech parks in Bengaluru to farmhouses on the outskirts of Delhi — we curate addresses that define lifestyles.</p>
+        <p style="color:var(--text-soft);margin-bottom:14px;line-height:1.8">Our team of 5,000+ certified property consultants, legal experts, and market analysts ensure every transaction is transparent, secure, and rewarding. With over 2 lakh happy families and ₹50,000+ Crore in property transactions, we've earned the trust of India's most discerning investors.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
+          <div style="padding:20px;border:1px solid var(--border);border-radius:14px;text-align:center"><strong style="display:block;font-size:1.8rem;font-family:'Playfair Display',serif;color:var(--blue)">2L+</strong><span style="font-size:.78rem;color:var(--text-soft);letter-spacing:.1em;text-transform:uppercase">Happy Families</span></div>
+          <div style="padding:20px;border:1px solid var(--border);border-radius:14px;text-align:center"><strong style="display:block;font-size:1.8rem;font-family:'Playfair Display',serif;color:var(--blue)">50K+</strong><span style="font-size:.78rem;color:var(--text-soft);letter-spacing:.1em;text-transform:uppercase">Properties</span></div>
+          <div style="padding:20px;border:1px solid var(--border);border-radius:14px;text-align:center"><strong style="display:block;font-size:1.8rem;font-family:'Playfair Display',serif;color:var(--blue)">120+</strong><span style="font-size:.78rem;color:var(--text-soft);letter-spacing:.1em;text-transform:uppercase">Cities</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT PAGE ============ -->
+<div class="page" id="page-contact">
+  <div class="container" style="padding:60px 0">
+    <div class="section-head">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Let's Find Your Perfect Property</h2>
+      <p>Our expert consultants are ready to help you make the best real estate decision.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-location-dot"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Head Office</h4><p style="color:var(--text-soft);font-size:.9rem">EstateHaven Tower, BKC,<br/>Mumbai, Maharashtra 400051</p></div></div>
+        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-phone"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Call Us</h4><p style="color:var(--text-soft);font-size:.9rem">+91 98765 43210<br/>+91 22 4567 8900</p></div></div>
+        <div style="padding:24px;border:1px solid var(--border);border-radius:var(--radius);display:flex;gap:16px;align-items:flex-start"><i style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--gold));color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0" class="fas fa-envelope"></i><div><h4 style="font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:4px">Email</h4><p style="color:var(--text-soft);font-size:.9rem">hello@estatehaven.in<br/>sales@estatehaven.in</p></div></div>
+      </div>
+      <form style="padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)" onsubmit="event.preventDefault();showToast('Inquiry sent! Our agent will contact you shortly.')">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div><label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px">Full Name</label><input type="text" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)" placeholder="Your name"/></div>
+          <div><label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px">Phone</label><input type="tel" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)" placeholder="+91"/></div>
+        </div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px">Email</label><input type="email" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)" placeholder="you@example.com"/></div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px">Interested In</label><select style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)"><option>Buy a Property</option><option>Sell a Property</option><option>Rent a Property</option><option>Site Visit</option></select></div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px">Message</label><textarea required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);min-height:120px;resize:vertical;font-family:inherit" placeholder="Tell us about your requirements..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Send Inquiry</button>
+      </form>
+    </div>
+    <div style="margin-top:40px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);aspect-ratio:21/9">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5!2d72.86!3d19.07!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzEyLjAiTiA3MsKwNTEnMzYuMCJF!5e0!3m2!1sen!2sin!4v1700000000000" loading="lazy" style="width:100%;height:100%;border:0"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Lightbox ============ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-xmark"></i></button>
+  <div class="lb-tools">
+    <button onclick="toggleZoom()" title="Zoom"><i class="fas fa-magnifying-glass-plus"></i></button>
+    <button onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+  </div>
+  <div class="lb-main">
+    <button class="lb-nav lb-prev" onclick="lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lbImg" src="" alt=""/>
+    <button class="lb-nav lb-next" onclick="lbNav(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+</div>
+
+<!-- ============ Compare Bar ============ -->
+<div class="compare-bar" id="compareBar">
+  <div class="items" id="cmpItems"></div>
+  <button class="btn btn-primary" onclick="showToast('Opening comparison view...')"><i class="fas fa-code-compare"></i> Compare</button>
+  <button class="btn btn-outline" onclick="state.compare=[];save();updateBadges();toggleCompare()"><i class="fas fa-xmark"></i></button>
+</div>
+
+<!-- ============ Footer ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-about">
+        <div class="logo" style="color:#fff"><div class="logo-mark"><i class="fas fa-building"></i></div><div>EstateHaven<small style="color:#9aa3b2">Luxury Real Estate</small></div></div>
+        <p>India's premier luxury real estate marketplace. Buy, sell & rent premium properties across 120+ cities with complete trust and transparency.</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#" data-page="buy">Buy Property</a></li>
+          <li><a href="#" data-page="rent">Rent Property</a></li>
+          <li><a href="#" data-page="commercial">Commercial</a></li>
+          <li><a href="#" data-page="plots">Plots & Land</a></li>
+          <li><a href="#">Sell Property</a></li>
+          <li><a href="#">Home Loans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" data-page="about">About Us</a></li>
+          <li><a href="#" data-page="contact">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <div><i class="fas fa-location-dot"></i><span>EstateHaven Tower, BKC, Mumbai 400051</span></div>
+        <div><i class="fas fa-phone"></i><span>+91 98765 43210</span></div>
+        <div><i class="fas fa-envelope"></i><span>hello@estatehaven.in</span></div>
+        <div><i class="fas fa-clock"></i><span>Mon–Sun: 9AM – 9PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2024 EstateHaven. All rights reserved.</div>
+      <div><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating -->
+<div class="floating">
+  <a href="https://wa.me/919876543210" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919876543210" class="float-btn float-call" title="Call"><i class="fas fa-phone"></i></a>
+  <button class="float-btn float-top" id="toTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done</span></div>
+
+<script>
+/* =========================================================
+   ESTATEHAVEN — LUXURY REAL ESTATE JS
+   ========================================================= */
+
+/* ---------- Image Pools (high-quality real estate) ---------- */
+const EXT_IMGS = [
+  'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
+  'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&q=80',
+];
+const INT_IMGS = [
+  'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80',
+  'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566753104-686f46a68522?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1200&q=80',
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+  'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600607687644-c7171b41624?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
+  'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566753086-20f0ae0c4a95?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600210491369-e753d80a41f5?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=1200&q=80',
+  'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600566752229-250ed79470b0?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1200&q=80',
+];
+const AMENITY_IMGS = [
+  'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&q=80',
+  'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+  'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+];
+
+/* ---------- Categories ---------- */
+const CATEGORIES = [
+  {name:'Luxury Villas',      count:428, img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80', type:'Villa'},
+  {name:'Independent Houses', count:612, img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', type:'House'},
+  {name:'Apartments',         count:1240,img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80', type:'Apartment'},
+  {name:'Flats',              count:980, img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', type:'Apartment'},
+  {name:'Farmhouses',         count:156, img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80', type:'Farmhouse'},
+  {name:'Residential Plots',  count:324, img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', type:'Plot'},
+  {name:'Commercial Plots',   count:89,  img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', type:'Commercial'},
+  {name:'Office Spaces',      count:215, img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80', type:'Commercial'},
+  {name:'Shops',              count:178, img:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80', type:'Commercial'},
+  {name:'Warehouses',         count:64,  img:'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80', type:'Commercial'},
+  {name:'Industrial Land',    count:42,  img:'https://images.unsplash.com/photo-1565636192335-b1d53a841b5f?w=600&q=80', type:'Commercial'},
+  {name:'Agricultural Land',  count:198, img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', type:'Plot'},
+  {name:'Luxury Penthouses',  count:86,  img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80', type:'Penthouse'},
+  {name:'Studio Apartments',  count:234, img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80', type:'Apartment'},
+];
+
+/* ---------- Property Generator ---------- */
+const LOCATIONS = [
+  {city:'Mumbai',areas:['Bandra West','Juhu','Worli Sea Face','Powai','Altamount Road','Malabar Hill','Colaba','Andheri West']},
+  {city:'Delhi',areas:['Greater Kailash','Vasant Vihar','Chanakyapuri','Defence Colony','Hauz Khas','Dwarka','Rohini','Saket']},
+  {city:'Bengaluru',areas:['Indiranagar','Koramangala','Whitefield','Hebbal','Sarjapur Road','Electronic City','JP Nagar','Yelahanka']},
+  {city:'Hyderabad',areas:['Jubilee Hills','Banjara Hills','Gachibowli','Hitech City','Kondapur','Kokapet','Narsingi','Manikonda']},
+  {city:'Pune',areas:['Koregaon Park','Kalyani Nagar','Baner','Hinjewadi','Wakad','Viman Nagar','Aundh','Kharadi']},
+  {city:'Chennai',areas:['Neelankarai','Besant Nagar','Adyar','T Nagar','Anna Nagar','OMR','ECR','Velachery']},
+  {city:'Ahmedabad',areas:['SG Highway','Prahlad Nagar','Bodakdev','Thaltej','Satellite','Vastrapur','Bopal','Shilaj']},
+  {city:'Jaipur',areas:['C-Scheme','Vaishali Nagar','Malviya Nagar','Jagatpura','Mansarovar','Tonk Road','Sitapura','Vidhadhar Nagar']},
+  {city:'Goa',areas:['Assagao','Siolim','Anjuna','Calangute','Palolem','Merces','Porvorim','Panaji']},
+  {city:'Kolkata',areas:['Alipore','Ballygunge','Salt Lake','New Town','Rajarhat','EM Bypass','Park Street','Southern Avenue']},
+];
+const BUILDERS = ['Lodha Group','DLF Homes','Godrej Properties','Prestige Estates','Oberoi Realty','Sobha Limited','Brigade Group','Embassy Group','Puravankara','Kolte Patil','Mahindra Lifespace','Tata Housing','Adani Realty','Kalpataru Limited','Raheja Developers','Suntek Group','Assetz Property','Total Environment','Polaris Habitat','Kolte Patil'];
+const TYPES = ['Villa','Apartment','Penthouse','Farmhouse','Plot','Commercial'];
+const FACING = ['North','South','East','West','North-East','South-East','North-West','South-West'];
+const FURN = ['Unfurnished','Semi-Furnished','Fully Furnished'];
+const OWNERSHIP = ['Freehold','Leasehold','Co-operative Society'];
+const NAMES_VILLA = ['Royal Oak Residence','Palm Heights','Azure Bay Villas','Serenity Meadows','Emerald Crest','The Grand Manor','Celestia Villas','Ivory Palms','Majestic Oaks','The Heritage Estate'];
+const NAMES_APT = ['Skyline Residences','Marina Bay Towers','The Address','Horizon Heights','Central Park','Paradise Towers','Regal Residency','Imperial Heights','Grandeur Towers','Prestige Palace'];
+const NAMES_PH = ['The Penthouse at One','Sky Villa','Crown Penthouse','The Pinnacle','Cloud Nine PH','Elysium Sky','The Apex','Horizon Sky Villa','The Summit','Astral Heights'];
+const NAMES_FARM = ['Green Valley Farmhouse','Meadow Crest','Orchard Retreat','The Country Estate','Harvest Haven','Sylvan Farm','Woodland Retreat','The Agrarian','Pasture View','The Homestead'];
+const NAMES_PLOT = ['Greenfield Plots','Prime Land','Heritage Plots','Signature Plots','Elite Land','The Address Plots','Royal Plots','Premier Land','Golden Acres','Prime Acres'];
+const NAMES_COM = ['Business Bay','Corporate Heights','Trade Center','Metro Tower','The Exchange','Cyber Hub','Innovator Park','Skyline Offices','Prestige Tower','The Address Business'];
+
+function getName(type){
+  const pools = {Villa:NAMES_VILLA,Apartment:NAMES_APT,Penthouse:NAMES_PH,Farmhouse:NAMES_FARM,Plot:NAMES_PLOT,Commercial:NAMES_COM};
+  const pool = pools[type]||NAMES_APT;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function priceFor(type,bhk){
+  const base = {Villa:[8000000,80000000],Apartment:[3000000,35000000],Penthouse:[25000000,250000000],Farmhouse:[15000000,120000000],Plot:[2000000,50000000],Commercial:[5000000,80000000]};
+  const [lo,hi] = base[type]||base.Apartment;
+  const mult = 1 + (bhk-2)*0.25;
+  return Math.round(((Math.random()*(hi-lo)+lo)*mult)/100000)*100000;
+}
+function rand(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+
+const ALL_AMENITIES = ['Swimming Pool','Gym','Garden','Club House','Children Park','Jogging Track','CCTV','Security Guard','Power Backup','WiFi','Lift','Fire Safety','Rain Water Harvesting','Visitor Parking','Pet Friendly'];
+const NEARBY = {School:['Delhi Public School','Ryan International','DPS Modern','Orchids International'],Hospital:['Apollo Hospital','Fortis Healthcare','Max Super Speciality','Manipal Hospital'],Mall:['Phoenix Mall','Inorbit Mall','DLF Mall','Oberoi Mall'],Metro:['Yellow Line','Blue Line','Pink Line','Purple Line'],BusStand:['Main Bus Stand','Central Bus Stand','Mofussil Bus Stand'],Railway:['Central Station','Junction','Railway Station'],Airport:['International Airport','Domestic Airport']};
+
+/* ---------- Generate 160 Properties ---------- */
+const PROPERTIES = [];
+for(let i=0;i<160;i++){
+  const type = TYPES[i%TYPES.length];
+  const loc = rand(LOCATIONS);
+  const area = rand(loc.areas);
+  const bhk = type==='Plot'?0:type==='Commercial'?0:randInt(1,5);
+  const bath = bhk?Math.max(1,bhk-1+randInt(0,1)):randInt(1,3);
+  const sqft = type==='Plot'?randInt(1000,10000):type==='Villa'?randInt(2500,8000):type==='Penthouse'?randInt(3500,12000):randInt(600,3500);
+  const price = priceFor(type,bhk);
+  const oldPrice = Math.round(price*(1+Math.random()*0.25)/100000)*100000;
+  const status = Math.random()>0.3?'Ready to Move':'Under Construction';
+  const furnished = type==='Plot'?'N/A':rand(FURN);
+  const floor = type==='Plot'?'N/A':type==='Villa'?'G+'+randInt(1,3):'Floor '+randInt(1,30)+' of '+randInt(15,40);
+  const parking = type==='Plot'?0:randInt(1,3);
+  const balconies = bhk?Math.min(bhk,randInt(1,3)):0;
+  const age = status==='Ready to Move'?randInt(0,15)+' years':(randInt(1,3)+' years to complete');
+  const rating = +(4+Math.random()).toFixed(1);
+  const reviews = randInt(12,480);
+  const featured = Math.random()>0.7;
+  const verified = Math.random()>0.3;
+  const isNew = Math.random()>0.75;
+  const builder = rand(BUILDERS);
+  const facing = rand(FACING);
+  const ownership = rand(OWNERSHIP);
+  const amenities = ALL_AMENITIES.filter(()=>Math.random()>0.55).slice(0,10);
+  if(amenities.length<5){amenities.push(...ALL_AMENITIES.slice(0,5-amenities.length))}
+  // Generate 22 unique images
+  const imgs = [];
+  const extPool = [...EXT_IMGS].sort(()=>Math.random()-0.5);
+  const intPool = [...INT_IMGS].sort(()=>Math.random()-0.5);
+  const amenPool = [...AMENITY_IMGS].sort(()=>Math.random()-0.5);
+  for(let k=0;k<8;k++) imgs.push(extPool[k%extPool.length]);
+  for(let k=0;k<10;k++) imgs.push(intPool[k%intPool.length]);
+  for(let k=0;k<4;k++) imgs.push(amenPool[k%amenPool.length]);
+
+  PROPERTIES.push({
+    id:i+1,
+    name:getName(type)+' '+area,
+    type, location:area, city:loc.city,
+    price, oldPrice, bhk, bath, sqft,
+    status, furnished, floor, facing, ownership, age, parking, balconies,
+    rating, reviews, featured, verified, isNew,
+    builder, amenities,
+    carpet: Math.round(sqft*0.75),
+    builtup: Math.round(sqft*0.85),
+    superBuilt: sqft,
+    plotSize: type==='Plot'?sqft+' sqft':type==='Villa'?randInt(2000,6000)+' sqft':'N/A',
+    images: imgs,
+    agent:{name:['Rajesh Sharma','Priya Kapoor','Arjun Mehta','Sneha Reddy','Vikram Singh','Ananya Iyer','Karan Patel','Meera Nair'][i%8], phone:'+91 98'+randInt(10000000,99999999), exp:randInt(3,18), listed:randInt(40,380)},
+    description:`Experience the epitome of luxury living at ${getName(type)} in ${area}, ${loc.city}. This exquisite ${bhk} BHK ${type.toLowerCase()} offers ${sqft} sq.ft. of thoughtfully designed space with premium finishes, imported marble flooring, and floor-to-ceiling windows that flood every room with natural light. Located in one of ${loc.city}'s most prestigious neighborhoods, residents enjoy seamless connectivity to business districts, international schools, and world-class healthcare. The property features ${amenities.slice(0,4).join(', ')} and is crafted by the renowned ${builder}, ensuring unmatched quality and value appreciation.`
+  });
+}
+
+/* ---------- State ---------- */
+const state = {
+  wish: JSON.parse(localStorage.getItem('eh_wish')||'[]'),
+  compare: JSON.parse(localStorage.getItem('eh_cmp')||'[]'),
+  viewed: JSON.parse(localStorage.getItem('eh_viewed')||'[]'),
+  currentFilter:{category:'all',budget:'',bhk:[],types:[],status:[],furn:[],amen:[]},
+  sort:'featured',
+};
+const save = ()=>{
+  localStorage.setItem('eh_wish',JSON.stringify(state.wish));
+  localStorage.setItem('eh_cmp',JSON.stringify(state.compare));
+  localStorage.setItem('eh_viewed',JSON.stringify(state.viewed));
+};
+const fmtPrice = n => {
+  if(n>=10000000) return '₹'+(n/10000000).toFixed(2)+' Cr';
+  if(n>=100000) return '₹'+(n/100000).toFixed(2)+' Lakh';
+  return '₹'+n.toLocaleString('en-IN');
+};
+const discount = (p,o)=>Math.round(((o-p)/o)*100);
+const stars = r => {const f=Math.floor(r);let s='';for(let i=0;i<5;i++)s+=i<f?'★':'☆';return s};
+const showToast = msg=>{const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)};
+
+/* ---------- Render: Categories ---------- */
+function renderCategories(){
+  document.getElementById('catGrid').innerHTML = CATEGORIES.map(c=>`
+    <div class="cat-card" onclick="filterByCategory('${c.type}')">
+      <img src="${c.img}" alt="${c.name}" loading="lazy"/>
+      <span class="count">${c.count}+</span>
+      <div class="label"><span>Explore</span><h3>${c.name}</h3></div>
+    </div>
+  `).join('');
+}
+function filterByCategory(type){
+  state.currentFilter.category = type;
+  navigate('buy');
+}
+
+/* ---------- Render: Property Card ---------- */
+function propertyCard(p){
+  const off = discount(p.price,p.oldPrice);
+  const inWish = state.wish.includes(p.id);
+  const inCmp = state.compare.includes(p.id);
+  return `
+    <div class="property-card">
+      <div class="pc-media" onclick="openProperty(${p.id})">
+        <img src="${p.images[0]}" alt="${p.name}" loading="lazy"/>
+        <div class="pc-badges">
+          ${p.featured?'<span class="pc-badge feat"><i class="fas fa-crown"></i> Featured</span>':''}
+          ${p.isNew?'<span class="pc-badge new">New</span>':''}
+          ${p.verified?'<span class="pc-badge verified"><i class="fas fa-check"></i> Verified</span>':''}
+          ${p.status==='Ready to Move'?'<span class="pc-badge rtm">Ready to Move</span>':''}
+        </div>
+        <div class="pc-actions">
+          <button class="pc-act ${inWish?'active':''}" onclick="event.stopPropagation();toggleWish(${p.id})" title="Wishlist"><i class="${inWish?'fas':'far'} fa-heart"></i></button>
+          <button class="pc-act ${inCmp?'active':''}" onclick="event.stopPropagation();toggleCompareItem(${p.id})" title="Compare"><i class="fas fa-code-compare"></i></button>
+          <button class="pc-act" onclick="event.stopPropagation();shareProperty(${p.id})" title="Share"><i class="fas fa-share-nodes"></i></button>
+        </div>
+        <div class="pc-price-tag">
+          <strong>${fmtPrice(p.price)}</strong>
+          <small>${off>0?'-'+off+'% • ':''}₹${Math.round(p.price/p.sqft).toLocaleString('en-IN')}/sq.ft</small>
+        </div>
+      </div>
+      <div class="pc-info">
+        <div class="pc-type">${p.type}${p.bhk?' • '+p.bhk+' BHK':''}</div>
+        <div class="pc-title">${p.name}</div>
+        <div class="pc-loc"><i class="fas fa-location-dot"></i>${p.location}, ${p.city}</div>
+        <div class="pc-specs">
+          ${p.bhk?`<span><i class="fas fa-bed"></i>${p.bhk} Bed</span>`:''}
+          <span><i class="fas fa-bath"></i>${p.bath} Bath</span>
+          <span><i class="fas fa-ruler-combined"></i>${p.sqft} sqft</span>
+          <span><i class="fas fa-car"></i>${p.parking} Park</span>
+        </div>
+        <div class="pc-foot">
+          <div class="pc-rating"><span class="stars">${stars(p.rating)}</span><strong>${p.rating}</strong><span style="color:var(--text-soft)">(${p.reviews})</span></div>
+          <div class="pc-foot-btns">
+            <button onclick="event.stopPropagation();openProperty(${p.id})">View</button>
+            <button onclick="event.stopPropagation();showToast('Agent will contact you shortly')">Agent</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ---------- Render: Featured ---------- */
+function renderFeatured(){
+  const featured = PROPERTIES.filter(p=>p.featured).slice(0,8);
+  document.getElementById('featuredGrid').innerHTML = featured.map(propertyCard).join('');
+}
+
+/* ---------- Filters ---------- */
+function applyFilters(){
+  const budget = document.querySelector('input[name="budget"]:checked')?.value||'';
+  state.currentFilter.budget = budget?+budget:'';
+  state.currentFilter.bhk = [...document.querySelectorAll('.bhk-filter:checked')].map(c=>+c.value);
+  state.currentFilter.types = [...document.querySelectorAll('.type-filter:checked')].map(c=>c.value);
+  state.currentFilter.status = [...document.querySelectorAll('.status-filter:checked')].map(c=>c.value);
+  state.currentFilter.furn = [...document.querySelectorAll('.furn-filter:checked')].map(c=>c.value);
+  state.currentFilter.amen = [...document.querySelectorAll('.amen-filter:checked')].map(c=>c.value);
+  renderListings();
+}
+function resetFilters(){
+  state.currentFilter = {category:'all',budget:'',bhk:[],types:[],status:[],furn:[],amen:[]};
+  document.querySelectorAll('.filters input[type="checkbox"]').forEach(c=>c.checked=false);
+  document.querySelector('input[name="budget"][value=""]').checked = true;
+  renderListings();
+}
+function getFiltered(){
+  let list = [...PROPERTIES];
+  const f = state.currentFilter;
+  if(f.category && f.category!=='all'){
+    if(f.category==='Plot') list = list.filter(p=>p.type==='Plot');
+    else if(f.category==='Commercial') list = list.filter(p=>p.type==='Commercial');
+    else list = list.filter(p=>p.type===f.category);
+  }
+  if(f.budget) list = list.filter(p=>p.price<=f.budget);
+  if(f.bhk.length) list = list.filter(p=>f.bhk.includes(p.bhk));
+  if(f.types.length) list = list.filter(p=>f.types.includes(p.type));
+  if(f.status.length) list = list.filter(p=>f.status.includes(p.status));
+  if(f.furn.length) list = list.filter(p=>f.furn.includes(p.furnished));
+  if(f.amen.length) list = list.filter(p=>f.amen.every(a=>p.amenities.includes(a)));
+  switch(state.sort){
+    case 'low': list.sort((a,b)=>a.price-b.price);break;
+    case 'high': list.sort((a,b)=>b.price-a.price);break;
+    case 'new': list.sort((a,b)=>b.id-a.id);break;
+    case 'popular': list.sort((a,b)=>b.reviews-a.reviews);break;
+    default: list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  }
+  return list;
+}
+function renderListings(){
+  const list = getFiltered();
+  document.getElementById('propCount').textContent = list.length;
+  document.getElementById('listGrid').innerHTML = list.length
+    ? list.map(propertyCard).join('')
+    : '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-soft)"><i class="fas fa-house-circle-exclamation" style="font-size:3rem;margin-bottom:14px;display:block"></i>No properties match your filters.</div>';
+}
+document.getElementById('sortSelect')?.addEventListener('change',e=>{state.sort=e.target.value;renderListings()});
+
+/* ---------- Navigation ---------- */
+function navigate(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const navLink = document.querySelector(`.nav-links a[data-page="${page}"]`);
+  if(navLink) navLink.classList.add('active');
+  document.getElementById('navLinks').classList.remove('open');
+
+  if(page==='home'){
+    document.getElementById('page-home').classList.add('active');
+  } else if(['buy','rent','commercial','plots'].includes(page)){
+    const titles = {buy:'Buy Properties',rent:'Rental Properties',commercial:'Commercial Spaces',plots:'Plots & Land'};
+    document.getElementById('listTitle').textContent = titles[page];
+    document.getElementById('listHeading').textContent = titles[page];
+    document.getElementById('listEyebrow').textContent = page.toUpperCase();
+    state.currentFilter.category = page==='commercial'?'Commercial':page==='plots'?'Plot':'all';
+    document.getElementById('page-listings').classList.add('active');
+    renderListings();
+  } else if(page==='about'){
+    document.getElementById('page-about').classList.add('active');
+  } else if(page==='contact'){
+    document.getElementById('page-contact').classList.add('active');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('click',e=>{
+  const a = e.target.closest('[data-page]');
+  if(a){ e.preventDefault(); navigate(a.dataset.page); }
+});
+
+/* ---------- Property Detail ---------- */
+let currentP = null;
+function openProperty(id){
+  const p = PROPERTIES.find(x=>x.id===id);
+  if(!p) return;
+  currentP = p;
+  state.viewed = [id,...state.viewed.filter(x=>x!==id)].slice(0,10);
+  save();
+  document.getElementById('pdpCrumb').textContent = p.name;
+  document.getElementById('pdpCatLink').textContent = p.type;
+  document.getElementById('pdpCatLink').onclick = e=>{e.preventDefault();filterByCategory(p.type)};
+
+  const off = discount(p.price,p.oldPrice);
+  const emi = Math.round((p.price*0.8*0.0075*Math.pow(1.0075,240))/(Math.pow(1.0075,240)-1));
+
+  document.getElementById('pdpContent').innerHTML = `
+    <div class="pdp-gallery">
+      ${p.images.slice(0,5).map((img,i)=>`
+        <div class="g-item" onclick="openLightbox(${i})">
+          <img src="${img}" alt="view ${i+1}" loading="lazy"/>
+          ${i===4?`<div class="g-more">+${p.images.length-4} Photos</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="pdp-layout">
+      <div class="pdp-main">
+        <div class="pdp-badges">
+          ${p.featured?'<span class="pc-badge feat"><i class="fas fa-crown"></i> Featured</span>':''}
+          ${p.isNew?'<span class="pc-badge new">New Launch</span>':''}
+          ${p.verified?'<span class="pc-badge verified"><i class="fas fa-check"></i> Verified</span>':''}
+          ${p.status==='Ready to Move'?'<span class="pc-badge rtm">Ready to Move</span>':'<span class="pc-badge new">Under Construction</span>'}
+        </div>
+        <h1>${p.name}</h1>
+        <div class="pdp-loc"><i class="fas fa-location-dot"></i>${p.location}, ${p.city} • ${p.type}${p.bhk?' • '+p.bhk+' BHK':''}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <span class="stars" style="font-size:1.1rem">${stars(p.rating)}</span>
+          <strong>${p.rating}</strong>
+          <span style="color:var(--text-soft)">• ${p.reviews} reviews</span>
+          <span style="color:var(--success);margin-left:8px"><i class="fas fa-check-circle"></i> 1.2K+ interested</span>
+        </div>
+
+        <div class="pdp-price-box">
+          <div class="now">${fmtPrice(p.price)} ${off>0?`<span style="font-size:1rem;color:var(--text-soft);text-decoration:line-through;margin-left:10px">${fmtPrice(p.oldPrice)}</span><span style="color:var(--success);font-size:1rem;margin-left:8px">${off}% off</span>`:''}</div>
+          <div class="emi">EMI starts at <strong>${fmtPrice(emi)}/month</strong> • ₹${Math.round(p.price/p.sqft).toLocaleString('en-IN')}/sq.ft</div>
+        </div>
+
+        <div class="spec-grid">
+          <div class="spec-item"><span>Builder</span><span>${p.builder}</span></div>
+          <div class="spec-item"><span>Property ID</span><span>EH${10000+p.id}</span></div>
+          <div class="spec-item"><span>Status</span><span>${p.status}</span></div>
+          <div class="spec-item"><span>Area (Super)</span><span>${p.superBuilt} sqft</span></div>
+          <div class="spec-item"><span>Carpet Area</span><span>${p.carpet} sqft</span></div>
+          <div class="spec-item"><span>Built-up Area</span><span>${p.builtup} sqft</span></div>
+          <div class="spec-item"><span>Plot Size</span><span>${p.plotSize}</span></div>
+          <div class="spec-item"><span>Bedrooms</span><span>${p.bhk||'N/A'}</span></div>
+          <div class="spec-item"><span>Bathrooms</span><span>${p.bath}</span></div>
+          <div class="spec-item"><span>Balconies</span><span>${p.balconies}</span></div>
+          <div class="spec-item"><span>Parking</span><span>${p.parking} covered</span></div>
+          <div class="spec-item"><span>Floor</span><span>${p.floor}</span></div>
+          <div class="spec-item"><span>Facing</span><span>${p.facing}</span></div>
+          <div class="spec-item"><span>Age</span><span>${p.age}</span></div>
+          <div class="spec-item"><span>Ownership</span><span>${p.ownership}</span></div>
+          <div class="spec-item"><span>Furnishing</span><span>${p.furnished}</span></div>
+        </div>
+
+        <h3 style="font-size:1.3rem;margin:30px 0 16px">About This Property</h3>
+        <p style="color:var(--text-soft);line-height:1.8">${p.description}</p>
+
+        <h3 style="font-size:1.3rem;margin:30px 0 16px">Amenities & Features</h3>
+        <div class="pdp-amenities">
+          ${p.amenities.map(a=>`<div class="amenity"><i class="fas fa-${a==='Swimming Pool'?'water-ladder':a==='Gym'?'dumbbell':a==='Garden'?'tree':a==='Club House'?'champagne-glasses':a==='Children Park'?'child':a==='Jogging Track'?'person-running':a==='CCTV'?'video':a==='Security Guard'?'user-shield':a==='Power Backup'?'bolt':a==='WiFi'?'wifi':a==='Lift'?'elevator':a==='Fire Safety'?'fire-extinguisher':a==='Rain Water Harvesting'?'droplet':a==='Visitor Parking'?'square-parking':'paw'}"></i>${a}</div>`).join('')}
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="floorplan">Floor Plan</button>
+            <button class="tab-btn" data-tab="gallery">Gallery</button>
+            <button class="tab-btn" data-tab="location">Location</button>
+            <button class="tab-btn" data-tab="nearby">Nearby</button>
+            <button class="tab-btn" data-tab="reviews">Reviews</button>
+            <button class="tab-btn" data-tab="faqs">FAQs</button>
+          </div>
+          <div class="tab-content active" id="tab-overview">
+            <p>${p.description}</p>
+            <p>This ${p.type.toLowerCase()} by ${p.builder} is located in the prime locality of ${p.location}, ${p.city}. The property faces ${p.facing} direction and offers ${p.superBuilt} sq.ft. of super built-up area with ${p.carpet} sq.ft. of carpet area. ${p.status==='Ready to Move'?'The property is ready for immediate possession.':'The property is currently under construction and will be ready for possession within '+p.age+'.'}</p>
+          </div>
+          <div class="tab-content" id="tab-floorplan">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+              ${['2D Floor Plan','3D Floor Plan','Master Plan','Site Plan'].map(f=>`<div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--border)"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=500&q=80" style="width:100%;height:100%;object-fit:cover" loading="lazy"/><div style="padding:10px;text-align:center;font-weight:600;font-size:.88rem">${f}</div></div>`).join('')}
+            </div>
+          </div>
+          <div class="tab-content" id="tab-gallery">
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">
+              ${p.images.map((img,i)=>`<div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden;cursor:pointer" onclick="openLightbox(${i})"><img src="${img}" style="width:100%;height:100%;object-fit:cover" loading="lazy"/></div>`).join('')}
+            </div>
+          </div>
+          <div class="tab-content" id="tab-location">
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:16/9;border:1px solid var(--border)">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5!2d72.86!3d19.07!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzEyLjAiTiA3MsKwNTEnMzYuMCJF!5e0!3m2!1sen!2sin!4v1700000000000" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+            </div>
+            <p style="margin-top:14px"><strong>Address:</strong> ${p.name}, ${p.location}, ${p.city}</p>
+          </div>
+          <div class="tab-content" id="tab-nearby">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+              ${Object.entries(NEARBY).map(([k,v])=>`<div style="padding:16px;background:var(--bg-soft);border-radius:12px"><h4 style="font-family:'Inter',sans-serif;font-size:.95rem;margin-bottom:8px;color:var(--blue)"><i class="fas fa-${k==='School'?'graduation-cap':k==='Hospital'?'hospital':k==='Mall'?'bag-shopping':k==='Metro'?'train-subway':k==='BusStand'?'bus':k==='Railway'?'train':k==='Airport'?'plane':''}" style="margin-right:6px"></i>Nearby ${k}</h4>${v.map(n=>`<div style="font-size:.85rem;color:var(--text-soft);padding:4px 0">• ${n} — ${randInt(1,12)} km</div>`).join('')}</div>`).join('')}
+            </div>
+          </div>
+          <div class="tab-content" id="tab-reviews">
+            ${[1,2,3].map(i=>`<div class="review"><div class="review-head"><strong>${['Rohit Verma','Anjali Mehta','Sanjay Iyer'][i-1]} <span class="stars" style="margin-left:8px">${stars(5-i*0.3)}</span></strong><span class="date">${i} month${i>1?'s':''} ago</span></div><p style="color:var(--text-soft)">Excellent property in a prime location. The construction quality by ${p.builder} is outstanding. ${['The amenities are world-class and the society is well-maintained.','Great investment opportunity. The area is developing rapidly.','Loved the spacious layout and the view from the balcony. Highly recommended.'][i-1]}</p></div>`).join('')}
+          </div>
+          <div class="tab-content" id="tab-faqs">
+            ${[
+              ['Is this property RERA registered?','Yes, this property is RERA registered. Registration number will be shared on request.'],
+              ['What is the possession date?','The possession timeline is '+p.age+'. For ready-to-move properties, immediate possession is available.'],
+              ['Are home loans available?','Yes, all major banks offer home loans for this property. Our team can assist with documentation.'],
+              ['What is the maintenance charge?','Maintenance charges are approximately ₹'+randInt(3,8)+'/sqft/month, which covers all amenities and security.'],
+              ['Can I schedule a site visit?','Absolutely! Click the "Schedule Visit" button or contact our agent directly.'],
+            ].map(([q,a])=>`<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">${q} <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>${a}</p></div></div>`).join('')}
+          </div>
+        </div>
+
+        <!-- Related -->
+        <h3 style="font-size:1.3rem;margin:40px 0 20px">Similar Properties</h3>
+        <div class="property-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+          ${PROPERTIES.filter(x=>x.type===p.type && x.city===p.city && x.id!==p.id).slice(0,4).map(propertyCard).join('')}
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="pdp-side">
+        <div class="agent-card">
+          <div class="agent-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="${p.agent.name}" loading="lazy"/></div>
+          <h4>${p.agent.name}</h4>
+          <div class="role">Senior Property Consultant</div>
+          <div class="agent-stats">
+            <div><strong>${p.agent.exp}+</strong><span>Years Exp</span></div>
+            <div><strong>${p.agent.listed}</strong><span>Listed</span></div>
+            <div><strong>4.9</strong><span>Rating</span></div>
+          </div>
+          <div class="agent-actions">
+            <a href="tel:${p.agent.phone.replace(/\s/g,'')}" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+            <a href="https://wa.me/${p.agent.phone.replace(/[^0-9]/g,'')}" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <button class="btn btn-outline" onclick="showToast('Visit scheduled! Agent will confirm shortly.')"><i class="fas fa-calendar-check"></i> Schedule Visit</button>
+          </div>
+        </div>
+
+        <div class="emi-card">
+          <h4><i class="fas fa-calculator"></i> EMI Calculator</h4>
+          <div class="emi-field">
+            <label>Property Price <strong id="emiPriceLbl">${fmtPrice(p.price)}</strong></label>
+            <input type="range" id="emiPrice" min="${p.price*0.5}" max="${p.price*1.5}" step="100000" value="${p.price}" oninput="calcEmi()"/>
+          </div>
+          <div class="emi-field">
+            <label>Down Payment <strong id="emiDownLbl">20%</strong></label>
+            <input type="range" id="emiDown" min="10" max="90" step="5" value="20" oninput="calcEmi()"/>
+          </div>
+          <div class="emi-field">
+            <label>Interest Rate <strong id="emiRateLbl">8.5%</strong></label>
+            <input type="range" id="emiRate" min="6" max="12" step="0.1" value="8.5" oninput="calcEmi()"/>
+          </div>
+          <div class="emi-field">
+            <label>Loan Tenure <strong id="emiTenLbl">20 years</strong></label>
+            <input type="range" id="emiTen" min="5" max="30" step="1" value="20" oninput="calcEmi()"/>
+          </div>
+          <div class="emi-result">
+            <div class="lbl">Monthly EMI</div>
+            <div class="val" id="emiVal">${fmtPrice(emi)}</div>
+          </div>
+        </div>
+
+        <div class="agent-card" style="background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;border:none">
+          <h4 style="color:#fff;font-size:1.2rem;margin-bottom:8px">🎯 Book a Site Visit</h4>
+          <p style="font-size:.88rem;opacity:.9;margin-bottom:16px">Experience this property in person. Our expert will guide you through every detail.</p>
+          <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="showToast('Visit request sent! We will call you within 30 minutes.')"><i class="fas fa-calendar-check"></i> Book Free Visit</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab handler
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    };
+  });
+
+  document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));
+  document.getElementById('page-pdp').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- EMI Calculator ---------- */
+function calcEmi(){
+  if(!currentP) return;
+  const price = +document.getElementById('emiPrice').value;
+  const down = +document.getElementById('emiDown').value;
+  const rate = +document.getElementById('emiRate').value;
+  const ten = +document.getElementById('emiTen').value;
+  document.getElementById('emiPriceLbl').textContent = fmtPrice(price);
+  document.getElementById('emiDownLbl').textContent = down+'%';
+  document.getElementById('emiRateLbl').textContent = rate+'%';
+  document.getElementById('emiTenLbl').textContent = ten+' years';
+  const loan = price*(1-down/100);
+  const r = rate/12/100;
+  const n = ten*12;
+  const emi = Math.round((loan*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+  document.getElementById('emiVal').textContent = fmtPrice(emi);
+}
+
+/* ---------- Lightbox ---------- */
+let lbImgs = [], lbIdx = 0;
+function openLightbox(idx){
+  if(!currentP) return;
+  lbImgs = currentP.images;
+  lbIdx = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('active');
+}
+function renderLightbox(){
+  document.getElementById('lbImg').src = lbImgs[lbIdx];
+  document.getElementById('lbThumbs').innerHTML = lbImgs.map((img,i)=>`<img src="${img}" class="${i===lbIdx?'active':''}" onclick="lbGo(${i})" loading="lazy"/>`).join('');
+}
+function lbNav(d){lbIdx = (lbIdx+d+lbImgs.length)%lbImgs.length;renderLightbox()}
+function lbGo(i){lbIdx=i;renderLightbox()}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active')}
+function toggleZoom(){const img=document.getElementById('lbImg');img.style.transform=img.style.transform==='scale(1.8)'?'scale(1)':'scale(1.8)'}
+function toggleFullscreen(){const el=document.getElementById('lightbox');if(!document.fullscreenElement)el.requestFullscreen?.();else document.exitFullscreen?.()}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('active'))return;
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='Escape')closeLightbox();
+});
+
+/* ---------- Wishlist / Compare ---------- */
+function toggleWish(id){
+  const i = state.wish.indexOf(id);
+  if(i>=0){state.wish.splice(i,1);showToast('Removed from wishlist')}
+  else {state.wish.push(id);showToast('Added to wishlist ❤️')}
+  save();updateBadges();renderFeatured();
+  if(document.getElementById('page-listings').classList.contains('active'))renderListings();
+  if(document.getElementById('page-pdp').classList.contains('active')&&currentP)openProperty(currentP.id);
+}
+function toggleCompareItem(id){
+  const i = state.compare.indexOf(id);
+  if(i>=0){state.compare.splice(i,1);showToast('Removed from compare')}
+  else {
+    if(state.compare.length>=4){showToast('Max 4 properties to compare');return}
+    state.compare.push(id);showToast('Added to compare');
+  }
+  save();updateBadges();renderFeatured();
+  if(document.getElementById('page-listings').classList.contains('active'))renderListings();
+}
+function toggleCompare(){
+  const bar = document.getElementById('compareBar');
+  if(!state.compare.length){bar.classList.remove('active');return}
+  bar.classList.add('active');
+  document.getElementById('cmpItems').innerHTML = state.compare.map(id=>{
+    const p = PROPERTIES.find(x=>x.id===id);
+    return `<div class="ci"><img src="${p.images[0]}" alt=""/><div><h5>${p.name.slice(0,24)}...</h5><div style="font-size:.78rem;color:var(--text-soft)">${fmtPrice(p.price)}</div></div><button onclick="toggleCompareItem(${p.id})"><i class="fas fa-xmark"></i></button></div>`;
+  }).join('');
+}
+function shareProperty(id){
+  const p = PROPERTIES.find(x=>x.id===id);
+  if(navigator.share){navigator.share({title:p.name,text:'Check out this property on EstateHaven',url:location.href})}
+  else {navigator.clipboard?.writeText(location.href);showToast('Link copied to clipboard')}
+}
+function updateBadges(){
+  document.getElementById('wishBadge').textContent = state.wish.length;
+  document.getElementById('cmpBadge').textContent = state.compare.length;
+}
+
+/* ---------- Theme ---------- */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('eh_theme')||'light';
+document.documentElement.setAttribute('data-theme',savedTheme);
+themeToggle.querySelector('i').className = savedTheme==='dark'?'fas fa-sun':'fas fa-moon';
+themeToggle.onclick = ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('eh_theme',next);
+  themeToggle.querySelector('i').className = next==='dark'?'fas fa-sun':'fas fa-moon';
+};
+
+/* ---------- Back to Top ---------- */
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll',()=>{toTop.classList.toggle('show',window.scrollY>400)});
+toTop.onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* ---------- Search Tabs ---------- */
+document.querySelectorAll('.search-tab').forEach(t=>{
+  t.onclick = ()=>{
+    document.querySelectorAll('.search-tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+  };
+});
+
+/* ---------- Init ---------- */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'),900);
+  renderCategories();
+  renderFeatured();
+  updateBadges();
+});
+</script>
+</body>
+</html>
+
