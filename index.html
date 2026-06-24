@@ -42,15 +42,21 @@
   --gold: #D4AF37;
   --gold-2: #F3E5AB;
   
+  /* Vibrant Accents */
+  --grad-primary: linear-gradient(135deg, #2563eb, #8b5cf6);
+  --grad-success: linear-gradient(135deg, #22c55e, #10b981);
+  --grad-info: linear-gradient(135deg, #0ea5e9, #3b82f6);
+  --grad-new: linear-gradient(135deg, #a855f7, #ec4899);
+  
   --dark: #000000;
   --success: #34c759;
   --danger: #ff3b30;
   
   /* Elegant Soft Shadows */
   --shadow-sm: 0 4px 14px rgba(0,0,0,0.04);
-  --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
-  --shadow-lg: 0 24px 50px rgba(0,0,0,0.08);
-  --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-lg: 0 24px 50px rgba(0,0,0,0.12);
+  --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.3);
   
   --radius: 16px;
   --radius-lg: 24px;
@@ -79,10 +85,19 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg); color: var(--text);
+  background-color: var(--bg);
+  /* Colorful Subtle Ambient Mesh */
+  background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.06) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text);
   line-height: 1.6; overflow-x: hidden;
   transition: background var(--trans), color var(--trans);
   -webkit-font-smoothing: antialiased;
+}
+[data-theme="dark"] body {
+  background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -154,9 +169,8 @@ header{
 /* Premium Buttons */
 .btn{padding:16px 36px;border-radius:999px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:all var(--trans);cursor:pointer; position: relative; overflow: hidden;}
 .btn i { font-size: 1.1rem; }
-.btn-primary{background:var(--blue);color:#fff; border: 1px solid var(--blue);}
-[data-theme="dark"] .btn-primary { background: var(--text); color: var(--dark); border-color: var(--text); }
-.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-md); opacity: 0.9;}
+.btn-primary{background:var(--grad-primary);color:#fff; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(99, 102, 241, 0.6); opacity: 0.95;}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#000; box-shadow: var(--shadow-gold);}
 .btn-gold:hover{transform:translateY(-3px);box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(12px);}
@@ -206,7 +220,7 @@ header{
 .chip-row{grid-column:span 6;display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 .chip{padding:8px 18px;border-radius:999px;background:var(--bg);font-size:.85rem;font-weight:500;cursor:pointer;transition:all var(--trans);border:1px solid var(--border); color: var(--text-soft);}
 .chip:hover { border-color: var(--gold); color: var(--text); }
-.chip.active{background:var(--gold);color:#000;border-color:var(--gold); font-weight: 600;}
+.chip.active{background:linear-gradient(135deg, var(--gold), #f59e0b);color:#000;border:none; font-weight: 700; box-shadow: 0 4px 10px rgba(212,175,55,0.4);}
 
 /* Hide Advanced Filters by default globally */
 .adv-filter { display: none !important; }
@@ -235,7 +249,7 @@ section{padding:100px 0; position: relative;}
 .cat-card .label span{font-size:.75rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase; font-weight: 600;}
 .cat-card .count{position:absolute;top:20px;right:20px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.95);color:#000;font-size:.75rem;font-weight:700;z-index:2; backdrop-filter: blur(10px);}
 
-/* ============ Property Cards (Apple/Zillow Style) ============ */
+/* ============ Property Cards ============ */
 .property-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:32px}
 .property-card{
   background:var(--surface); border-radius:var(--radius-lg);
@@ -248,11 +262,11 @@ section{padding:100px 0; position: relative;}
 .pc-media img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);}
 .property-card:hover .pc-media img{transform:scale(1.08)}
 .pc-badges{position:absolute;top:16px;left:16px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
-.pc-badge{padding:6px 12px;border-radius:8px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
+.pc-badge{padding:6px 12px;border-radius:8px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); border:none;}
 .pc-badge.feat{background:var(--gold);color:#000;}
-.pc-badge.new{background:var(--text);color:var(--bg);}
-.pc-badge.verified{background:rgba(52, 199, 89, 0.95);color:#fff;}
-.pc-badge.rtm{background:rgba(255,255,255,.95);color:#000;}
+.pc-badge.new{background:var(--grad-new);color:#fff;}
+.pc-badge.verified{background:var(--grad-success);color:#fff;}
+.pc-badge.rtm{background:var(--grad-info);color:#fff;}
 .pc-actions{position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:2}
 .pc-act{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:#000;transition:all var(--trans);font-size:.9rem; box-shadow: var(--shadow-sm);}
 .pc-act:hover{background:var(--gold);color:#000;transform:scale(1.1);}
@@ -458,7 +472,7 @@ footer{background:var(--blue);color:#e2e8f0;padding:100px 0 0;margin-top:80px; b
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast i{color:var(--gold); font-size: 1.2rem;}
 
-/* ============ Responsive ============ */
+/* ============ Responsive Mobile (Full Fit & App-like) ============ */
 @media (max-width:1200px){
   .search-grid{grid-template-columns:repeat(3,1fr)}
   .search-actions,.chip-row{grid-column:span 3}
@@ -471,20 +485,41 @@ footer{background:var(--blue);color:#e2e8f0;padding:100px 0 0;margin-top:80px; b
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:768px){
+  .container { padding: 0 16px; overflow-x: visible; } /* Optimized padding for mobile full fit */
+  
   .nav-links{display:none}
   .menu-toggle{display:grid}
   .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--surface);flex-direction:column;padding:20px;border-top:1px solid var(--border); box-shadow: var(--shadow-md);}
   .nav-links.open a { padding: 14px 20px; font-size: 1.05rem; }
+  
+  .search-section { padding: 0 16px; margin-top: -60px; }
+  .search-card { padding: 24px 16px; border-radius: 20px; }
   .search-grid{grid-template-columns:1fr 1fr}
   .search-actions,.chip-row{grid-column:span 2}
-  section{padding:80px 0}
+  
+  section{padding:70px 0}
   .hero{min-height:85vh}
-  .hero h1 { font-size: 2.8rem; }
+  .hero h1 { font-size: 2.6rem; background: linear-gradient(135deg, #fff 0%, var(--gold-2) 50%, var(--gold) 100%); -webkit-background-clip: text;}
+  
   .footer-grid{grid-template-columns:1fr}
   .spec-grid{grid-template-columns:1fr}
-  .pdp-gallery{grid-template-columns:1fr;grid-template-rows:300px}
+  
+  /* App-like Swipeable Cat Grid Full-Fit */
+  .cat-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; margin: 0 -16px; padding: 10px 16px 30px; scrollbar-width: none; }
+  .cat-grid::-webkit-scrollbar { display: none; }
+  .cat-card { min-width: 260px; scroll-snap-align: center; }
+
+  /* App-like Swipeable Featured Grid Full-Fit */
+  #featuredGrid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; margin: 0 -16px; padding: 10px 16px 30px; scrollbar-width: none; }
+  #featuredGrid::-webkit-scrollbar { display: none; }
+  #featuredGrid .property-card { min-width: 85vw; scroll-snap-align: center; flex-shrink: 0; }
+  #listGrid { grid-template-columns: 1fr; gap: 24px; display: grid; } /* Keeps listings page vertical */
+
+  /* Full-Fit Edge-to-Edge Image Gallery */
+  .pdp-gallery{grid-template-columns:1fr;grid-template-rows:65vw; margin: 0 -16px 30px; border-radius: 0;}
   .pdp-gallery .g-item:not(:first-child){display:none}
   .pdp-gallery .g-item:first-child{grid-column:span 1}
+  
   .floating { right: 20px; bottom: 20px; gap: 12px; }
   .float-btn { width: 48px; height: 48px; font-size: 1.2rem; }
 
@@ -492,18 +527,11 @@ footer{background:var(--blue);color:#e2e8f0;padding:100px 0 0;margin-top:80px; b
   .search-grid .adv-filter { display: none; }
   .search-grid.show-adv .adv-filter { display: flex; }
   .toggle-adv-btn { 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: var(--bg-soft); 
-    color: var(--text); 
-    border: 1px solid var(--border); 
-    border-radius: 999px; 
-    padding: 14px 24px; 
-    font-weight: 600; 
-    font-size: .95rem; 
-    gap: 8px; 
-    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; 
+    background: var(--bg-soft); color: var(--text); 
+    border: 1px solid var(--border); border-radius: 999px; 
+    padding: 14px 24px; font-weight: 600; font-size: .95rem; 
+    gap: 8px; width: 100%;
   }
   .search-actions .btn-primary { width: 100%; justify-content: center; }
 }
@@ -511,12 +539,12 @@ footer{background:var(--blue);color:#e2e8f0;padding:100px 0 0;margin-top:80px; b
   .logo small{display:none}
   .hero-actions{flex-direction:column}
   .hero-actions .btn{width:100%;justify-content:center}
-  .property-grid{grid-template-columns:1fr}
   .search-grid{grid-template-columns:1fr}
   .search-actions,.chip-row{grid-column:span 1}
   .search-tabs-container{flex-direction:column; align-items:flex-start; gap:10px}
   #mainSearchToggleBtn{align-self:flex-end; margin-top:-44px;}
   .stats-wrapper { grid-template-columns: 1fr; }
+  .pc-price-tag strong { font-size: 1.2rem; }
 }
 </style>
 </head>
@@ -1331,7 +1359,16 @@ function openProperty(id){
   document.getElementById('pdpCatLink').onclick = e=>{e.preventDefault();filterByCategory(p.type)};
 
   const off = discount(p.price,p.oldPrice);
-  const emi = Math.round((p.price*0.8*0.0075*Math.pow(1.0075,240))/(Math.pow(1.0075,240)-1));
+  
+  // Calculate initial EMI matching default slider values (20% down, 8.5% rate, 20 years)
+  const price = p.price;
+  const down = 20;
+  const rate = 8.5;
+  const ten = 20;
+  const loan = price * (1 - down / 100);
+  const r = rate / 12 / 100;
+  const n = ten * 12;
+  const emi = Math.round((loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
 
   document.getElementById('pdpContent').innerHTML = `
     <div class="pdp-gallery">
