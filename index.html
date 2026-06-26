@@ -185,6 +185,61 @@
         </div>
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20 pt-16 pb-8 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4 text-2xl font-bold text-gray-900 dark:text-white cursor-pointer" onclick="showView('home')">
+                        <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-1.5 rounded-lg text-white">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                        </div>
+                        AuraEstate
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-md leading-relaxed">
+                        Redefining luxury real estate experiences. We help you find properties that match your lifestyle and elevate your living standards with personalized service and attention to detail.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 font-medium">
+                        <li class="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors" onclick="showView('home')">Home</li>
+                        <li class="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">Our Properties</li>
+                        <li class="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">Our Agents</li>
+                        <li class="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">About Us</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 mt-0.5 text-blue-500 flex-shrink-0"></i> 
+                            <span>BKC, Bandra Kurla Complex,<br>Mumbai, Maharashtra 400051</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-blue-500 flex-shrink-0"></i> 
+                            <a href="tel:+919870679850" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">+91 9870679850</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-blue-500 flex-shrink-0"></i> 
+                            <a href="mailto:contact@auraestate.in" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">contact@auraestate.in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                <p>&copy; 2026 AuraEstate Luxury Realty. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0 font-medium">
+                    <span class="cursor-pointer hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</span>
+                    <span class="cursor-pointer hover:text-gray-900 dark:hover:text-white transition-colors">Terms of Service</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col hidden">
         <div class="flex justify-between items-center p-4 text-white">
             <div id="lightbox-counter" class="text-sm font-medium tracking-widest"></div>
