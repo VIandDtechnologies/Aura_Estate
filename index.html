@@ -13,16 +13,14 @@
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Custom Utilities */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Smooth transitions */
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100 font-sans min-h-screen">
@@ -60,7 +58,7 @@
         <div id="home-view" class="fade-in block">
             <div class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
                 <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80" alt="Luxury Home" class="w-full h-full object-cover">
+                    <img src="https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/14b36b631-6a0a-4241-8a61-30edab31aa39.png" alt="Luxury Home" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-50 dark:to-gray-950"></div>
                 </div>
                 <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
@@ -89,7 +87,6 @@
         </div>
 
         <div id="details-view" class="fade-in hidden pb-24">
-            
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between sticky top-20 z-30 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
                 <button onclick="showView('home')" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors font-medium">
                     <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Search
@@ -128,7 +125,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    
                     <div class="lg:col-span-2 space-y-12">
                         <div id="detail-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
 
@@ -185,7 +181,6 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20 pt-16 pb-8 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -200,7 +195,6 @@
                         Redefining luxury real estate experiences. We help you find properties that match your lifestyle and elevate your living standards with personalized service and attention to detail.
                     </p>
                 </div>
-                
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Quick Links</h4>
                     <ul class="space-y-2 text-gray-600 dark:text-gray-400 font-medium">
@@ -210,7 +204,6 @@
                         <li class="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">About Us</li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Contact Us</h4>
                     <ul class="space-y-3 text-gray-600 dark:text-gray-400">
@@ -229,7 +222,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                 <p>&copy; 2026 AuraEstate Luxury Realty. All rights reserved.</p>
                 <div class="flex gap-6 mt-4 md:mt-0 font-medium">
@@ -255,20 +247,217 @@
     </div>
 
     <script>
-        // --- DATA ---
-        const MOCK_IMAGES = [
-            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1200&q=80"
-        ];
+        // --- UNIQUE GENERATED IMAGES ---
+        const IMG_OCEAN_VILLA = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/14b36b631-6a0a-4241-8a61-30edab31aa39.png";
+        const IMG_PENTHOUSE_LIVING = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/16a0964ec-bf58-4096-ad98-c7fbc7b5d0ab.png";
+        const IMG_MED_VILLA = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/173b8aa27-7a2a-4500-af6f-21f75999c05c.png";
+        const IMG_BEACH_HOUSE = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/145d0d779-a009-4cb9-acef-901f828d781b.png";
+        const IMG_WOODLAND = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/13fff2784-6a8f-4192-ab9a-262c74e641d1.png";
+        const IMG_URBAN_TOWN = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/1c4cefcc4-25f0-449b-b380-d60e71120ba0.png";
+        const IMG_GRAND_LIVING = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/13eb218f8-1758-44ef-bc1e-bcd11968707d.png";
+        const IMG_COLONIAL = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/119a51920-464a-4597-b2f1-c1befe7dafd0.png";
+        const IMG_KITCHEN = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/18c9adb23-8f5d-4203-8151-13e49c4b59b2.png";
+        const IMG_MASTER_BED = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/152a5730c-8308-4c3e-8772-441f005a74ba.png";
+        const IMG_ROOFTOP = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/14ae25267-1e10-40d3-84fe-60547cd7d26f.png";
+        const IMG_GLASS_HOUSE = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/1191b6690-4ff2-42bd-915d-0c9032f77ef1.png";
+        const IMG_BATHROOM = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/17eb03560-968f-49f4-9033-33f553c875b2.png";
+        const IMG_TROPICAL = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/14cf2d7fd-c389-4af1-9227-476a9859a91e.png";
+        const IMG_SCANDI = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/161ab2c2c-a540-4711-b350-6a72a2750d30.png";
+        const IMG_WINE = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/1caf6c6d7-2624-4ecf-bb7b-32accaa5262a.png";
+        const IMG_AERIAL = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/109d2a4dc-e7d8-4c59-8e9b-8cd7c277c3fd.png";
+        const IMG_LIBRARY = "https://image.qwenlm.ai/public_source/a756e9d5-97f5-49be-9fe9-d4fb52d51621/1508a019b-c1ff-48d4-8c6f-8b1084a6de13.png";
 
+        // --- DATA ---
         const PROPERTIES = [
-            { id: 'p1', title: 'The Skyline Luxury Villa', price: '₹25,50,00,000', location: 'Bandra West, Mumbai', city: 'Mumbai', type: 'Villa', beds: 5, baths: 6, area: '6,500', parking: 3, status: 'Fully Furnished', floor: 'Ground + 2', age: '2 Years', description: 'Experience unparalleled luxury in this breathtaking ultra-modern villa. Featuring panoramic sea views and smart home technology.', images: [...MOCK_IMAGES, ...MOCK_IMAGES], amenities: ['Pool', 'Gym', 'Garden', 'Security', 'Clubhouse', 'Power Backup', 'WiFi'], rating: 4.9, reviews: 124, featured: true },
-            { id: 'p2', title: 'Azure Oceanfront Penthouse', price: '₹18,50,00,000', location: 'Dona Paula, Goa', city: 'Goa', type: '3BHK', beds: 3, baths: 4, area: '3,200', parking: 2, status: 'Semi-Furnished', floor: '12th Floor', age: 'New', description: 'A masterpiece of design sitting high above the ocean. Wrap-around balconies and premium building amenities.', images: [...MOCK_IMAGES].reverse(), amenities: ['Pool', 'Gym', 'Lift', 'Security', 'WiFi', 'Spa'], rating: 4.8, reviews: 89, featured: false },
-            { id: 'p3', title: 'Serenity Woodland Estate', price: '₹32,00,00,000', location: 'Alibaug, Maharashtra', city: 'Alibaug', type: 'Villa', beds: 6, baths: 7, area: '8,400', parking: 4, status: 'Fully Furnished', floor: 'Ground + 1', age: '5 Years', description: 'Nestled in a private enclave, this estate blends rustic charm with modern luxury. Perfect for quiet retreats.', images: MOCK_IMAGES.slice(2).concat(MOCK_IMAGES), amenities: ['Garden', 'Security', 'Power Backup', 'Home Theater'], rating: 5.0, reviews: 42, featured: true }
+            { 
+                id: 'p1', 
+                title: 'The Skyline Luxury Villa', 
+                price: '25,50,00,000', 
+                location: 'Bandra West, Mumbai', 
+                city: 'Mumbai', 
+                type: 'Villa', 
+                beds: 5, 
+                baths: 6, 
+                area: '6,500', 
+                parking: 3, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 2', 
+                age: '2 Years', 
+                description: 'Experience unparalleled luxury in this breathtaking ultra-modern villa. Featuring panoramic sea views, an infinity pool, smart home technology, and a grand double-height living space with a designer chandelier. The property includes a gourmet chef\'s kitchen, wine cellar, and a master suite with mountain views.', 
+                images: [IMG_OCEAN_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM, IMG_WINE, IMG_AERIAL], 
+                amenities: ['Infinity Pool', 'Gym', 'Garden', 'Security', 'Clubhouse', 'Power Backup', 'WiFi', 'Wine Cellar', 'Smart Home'], 
+                rating: 4.9, 
+                reviews: 124, 
+                featured: true 
+            },
+            { 
+                id: 'p2', 
+                title: 'Azure Oceanfront Penthouse', 
+                price: '₹18,50,00,000', 
+                location: 'Dona Paula, Goa', 
+                city: 'Goa', 
+                type: 'Penthouse', 
+                beds: 3, 
+                baths: 4, 
+                area: '3,200', 
+                parking: 2, 
+                status: 'Semi-Furnished', 
+                floor: '12th Floor', 
+                age: 'New', 
+                description: 'A masterpiece of design sitting high above the ocean. This stunning penthouse features wrap-around balconies, a private rooftop terrace with fire pit, and premium building amenities including spa and infinity pool. Floor-to-ceiling windows offer breathtaking sunset views over the Arabian Sea.', 
+                images: [IMG_PENTHOUSE_LIVING, IMG_ROOFTOP, IMG_MASTER_BED, IMG_BATHROOM, IMG_BEACH_HOUSE], 
+                amenities: ['Pool', 'Gym', 'Lift', 'Security', 'WiFi', 'Spa', 'Rooftop Terrace', 'Concierge'], 
+                rating: 4.8, 
+                reviews: 89, 
+                featured: true 
+            },
+            { 
+                id: 'p3', 
+                title: 'Serenity Woodland Estate', 
+                price: '₹32,00,00,000', 
+                location: 'Alibaug, Maharashtra', 
+                city: 'Alibaug', 
+                type: 'Estate', 
+                beds: 6, 
+                baths: 7, 
+                area: '8,400', 
+                parking: 4, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 1', 
+                age: '5 Years', 
+                description: 'Nestled in a private enclave, this estate blends rustic charm with modern luxury. The property features a stone and wood exterior, floor-to-ceiling glass walls overlooking the forest, a home theater, and a private library. Perfect for quiet retreats and entertaining guests in style.', 
+                images: [IMG_WOODLAND, IMG_GLASS_HOUSE, IMG_LIBRARY, IMG_GRAND_LIVING, IMG_SCANDI, IMG_KITCHEN], 
+                amenities: ['Garden', 'Security', 'Power Backup', 'Home Theater', 'Library', 'Forest View', 'Private Enclave'], 
+                rating: 5.0, 
+                reviews: 42, 
+                featured: true 
+            },
+            { 
+                id: 'p4', 
+                title: 'Mediterranean Lavender Villa', 
+                price: '₹15,75,00,000', 
+                location: 'Lonavala, Maharashtra', 
+                city: 'Lonavala', 
+                type: 'Villa', 
+                beds: 4, 
+                baths: 5, 
+                area: '5,200', 
+                parking: 2, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 1', 
+                age: '3 Years', 
+                description: 'Inspired by the charm of Provence, this stunning Mediterranean villa is surrounded by lavender gardens and olive groves. Features terracotta roof tiles, arched doorways, stone pathways, and a private courtyard. The perfect countryside retreat with modern amenities.', 
+                images: [IMG_MED_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM], 
+                amenities: ['Lavender Garden', 'Courtyard', 'Pool', 'Security', 'Power Backup', 'WiFi', 'Olive Grove'], 
+                rating: 4.7, 
+                reviews: 67, 
+                featured: false 
+            },
+            { 
+                id: 'p5', 
+                title: 'Tropical Beachfront Retreat', 
+                price: '₹22,00,00,000', 
+                location: 'Calangute, Goa', 
+                city: 'Goa', 
+                type: 'Beach House', 
+                beds: 4, 
+                baths: 4, 
+                area: '4,800', 
+                parking: 2, 
+                status: 'Fully Furnished', 
+                floor: 'Ground', 
+                age: '1 Year', 
+                description: 'A stunning beachfront property with a thatched roof pavilion, infinity pool blending into the ocean horizon, and lush tropical landscaping. This Bali-inspired villa offers the ultimate tropical getaway with modern luxury amenities and direct beach access.', 
+                images: [IMG_TROPICAL, IMG_BEACH_HOUSE, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], 
+                amenities: ['Beach Access', 'Infinity Pool', 'Tropical Garden', 'Pavilion', 'Security', 'WiFi', 'Spa'], 
+                rating: 4.9, 
+                reviews: 156, 
+                featured: true 
+            },
+            { 
+                id: 'p6', 
+                title: 'Colonial Grand Manor', 
+                price: '₹45,00,00,000', 
+                location: 'Lutyens Delhi, New Delhi', 
+                city: 'Delhi', 
+                type: 'Manor', 
+                beds: 8, 
+                baths: 10, 
+                area: '12,000', 
+                parking: 6, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 2', 
+                age: '10 Years', 
+                description: 'A magnificent colonial-style mansion featuring white columns, a circular driveway, manicured lawns, and mature oak trees. This heritage property combines timeless elegance with modern luxury, including a grand ballroom, wine cellar, and staff quarters.', 
+                images: [IMG_COLONIAL, IMG_GRAND_LIVING, IMG_LIBRARY, IMG_WINE, IMG_KITCHEN, IMG_MASTER_BED], 
+                amenities: ['Ballroom', 'Wine Cellar', 'Garden', 'Staff Quarters', 'Security', 'Pool', 'Tennis Court'], 
+                rating: 5.0, 
+                reviews: 34, 
+                featured: true 
+            },
+            { 
+                id: 'p7', 
+                title: 'Modern Urban Townhouse', 
+                price: '₹8,50,00,000', 
+                location: 'Koramangala, Bangalore', 
+                city: 'Bangalore', 
+                type: 'Townhouse', 
+                beds: 3, 
+                baths: 3, 
+                area: '2,800', 
+                parking: 2, 
+                status: 'Semi-Furnished', 
+                floor: 'Ground + 2', 
+                age: 'New', 
+                description: 'A sleek contemporary townhouse with a dark geometric facade, rooftop garden, and modern landscaping. Features open-plan living, smart home integration, and stunning city views from the rooftop terrace. Perfect for urban professionals.', 
+                images: [IMG_URBAN_TOWN, IMG_PENTHOUSE_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_ROOFTOP], 
+                amenities: ['Rooftop Garden', 'Smart Home', 'Security', 'Lift', 'WiFi', 'Gym Access'], 
+                rating: 4.6, 
+                reviews: 78, 
+                featured: false 
+            },
+            { 
+                id: 'p8', 
+                title: 'Scandinavian Hillside Home', 
+                price: '₹12,00,00,000', 
+                location: 'Manali, Himachal Pradesh', 
+                city: 'Manali', 
+                type: 'Chalet', 
+                beds: 4, 
+                baths: 4, 
+                area: '3,600', 
+                parking: 2, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 1', 
+                age: '2 Years', 
+                description: 'A beautiful Scandinavian-style home nestled in the Himalayan hills. Features light wood and white walls, large panoramic windows with mountain views, minimalist landscaping, and a cozy fireplace. The perfect mountain retreat for all seasons.', 
+                images: [IMG_SCANDI, IMG_MASTER_BED, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_BATHROOM], 
+                amenities: ['Mountain View', 'Fireplace', 'Garden', 'Security', 'Power Backup', 'WiFi', 'Heating'], 
+                rating: 4.8, 
+                reviews: 91, 
+                featured: false 
+            },
+            { 
+                id: 'p9', 
+                title: 'Glass Cliff House', 
+                price: '₹38,00,00,000', 
+                location: 'Mahabaleshwar, Maharashtra', 
+                city: 'Mahabaleshwar', 
+                type: 'Villa', 
+                beds: 5, 
+                baths: 6, 
+                area: '7,200', 
+                parking: 3, 
+                status: 'Fully Furnished', 
+                floor: 'Ground + 2', 
+                age: '1 Year', 
+                description: 'A dramatic cantilevered glass house perched on a hillside with breathtaking valley views. Features a reflecting pool, floor-to-ceiling glass walls, and seamless indoor-outdoor living. An architectural masterpiece for those who appreciate bold design.', 
+                images: [IMG_GLASS_HOUSE, IMG_GRAND_LIVING, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], 
+                amenities: ['Valley View', 'Reflecting Pool', 'Smart Home', 'Security', 'Power Backup', 'WiFi', 'Gym'], 
+                rating: 4.9, 
+                reviews: 53, 
+                featured: true 
+            }
         ];
 
         // --- STATE ---
@@ -281,11 +470,9 @@
             renderGrid(PROPERTIES);
             lucide.createIcons();
             
-            // Search listeners
             document.getElementById('desktop-search').addEventListener('input', handleSearch);
             document.getElementById('mobile-search').addEventListener('input', handleSearch);
 
-            // Dark Mode Toggle
             document.getElementById('theme-toggle').addEventListener('click', () => {
                 isDark = !isDark;
                 document.documentElement.classList.toggle('dark', isDark);
@@ -295,11 +482,10 @@
                 lucide.createIcons();
             });
 
-            calculateEMI(); // Init EMI values
+            calculateEMI();
         });
 
         // --- FUNCTIONS ---
-
         function renderGrid(data) {
             const grid = document.getElementById('property-grid');
             if (data.length === 0) {
@@ -357,7 +543,6 @@
             currentProperty = PROPERTIES.find(p => p.id === id);
             activeImageIndex = 0;
             
-            // Populate DOM
             document.getElementById('detail-title').innerText = currentProperty.title;
             document.getElementById('detail-location').innerText = currentProperty.location;
             document.getElementById('detail-price').innerText = currentProperty.price;
@@ -368,7 +553,6 @@
                 <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">${currentProperty.type}</span>
             `;
 
-            // Setup Stats
             const stats = [
                 { icon: 'bed-double', label: 'Bedrooms', val: currentProperty.beds },
                 { icon: 'bath', label: 'Bathrooms', val: currentProperty.baths },
@@ -384,7 +568,6 @@
                 </div>
             `).join('');
 
-            // Setup Amenities
             document.getElementById('detail-amenities').innerHTML = currentProperty.amenities.map(a => `
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50">
                     <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
@@ -407,7 +590,6 @@
                 </div>
             `).join('');
             
-            // Scroll thumbnail into view
             const activeThumb = strip.children[activeImageIndex];
             if(activeThumb) {
                 strip.scrollTo({ left: activeThumb.offsetLeft - strip.offsetWidth / 2 + activeThumb.offsetWidth / 2, behavior: 'smooth' });
@@ -418,7 +600,7 @@
             activeImageIndex = idx;
             updateGalleryUI();
             if(!document.getElementById('lightbox').classList.contains('hidden')) {
-                openLightbox(); // refresh lightbox image
+                openLightbox();
             }
         }
 
@@ -440,7 +622,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Keyboard navigation for Lightbox
         document.addEventListener('keydown', (e) => {
             if(!document.getElementById('lightbox').classList.contains('hidden')) {
                 if(e.key === 'Escape') closeLightbox();
@@ -449,7 +630,6 @@
             }
         });
 
-        // EMI Calculator Logic
         function calculateEMI() {
             const p = parseFloat(document.getElementById('emi-principal').value);
             const r = parseFloat(document.getElementById('emi-rate').value);
@@ -465,7 +645,7 @@
             
             document.getElementById('emi-result').innerText = '₹' + Math.round(emi).toLocaleString('en-IN');
         }
-
     </script>
 </body>
 </html>
+
