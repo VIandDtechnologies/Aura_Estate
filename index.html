@@ -21,6 +21,132 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        /* ===== Modal Animations ===== */
+        .modal-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-overlay .modal-panel {
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .modal-overlay.active .modal-panel {
+            transform: scale(1) translateY(0);
+        }
+
+        /* ===== Floating Label ===== */
+        .fl-group { position: relative; }
+        .fl-group input,
+        .fl-group textarea,
+        .fl-group select {
+            width: 100%;
+            padding: 22px 16px 8px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            color: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .dark .fl-group input,
+        .dark .fl-group textarea,
+        .dark .fl-group select {
+            border-bottom-color: #374151;
+            color: #f3f4f6;
+        }
+        .fl-group label {
+            position: absolute;
+            left: 16px;
+            top: 20px;
+            color: #9ca3af;
+            font-size: 14px;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .fl-group input:focus,
+        .fl-group textarea:focus,
+        .fl-group select:focus {
+            border-bottom-color: #2563eb;
+        }
+        .dark .fl-group input:focus,
+        .dark .fl-group textarea:focus,
+        .dark .fl-group select:focus {
+            border-bottom-color: #60a5fa;
+        }
+        .fl-group input:focus + label,
+        .fl-group input:not(:placeholder-shown) + label,
+        .fl-group textarea:focus + label,
+        .fl-group textarea:not(:placeholder-shown) + label,
+        .fl-group select:focus + label,
+        .fl-group.has-value label,
+        .fl-group input[type="date"]:focus + label,
+        .fl-group input[type="date"]:not([value=""]) + label,
+        .fl-group input[type="time"]:focus + label,
+        .fl-group input[type="time"]:not([value=""]) + label {
+            top: 6px;
+            font-size: 11px;
+            color: #2563eb;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .dark .fl-group input:focus + label,
+        .dark .fl-group input:not(:placeholder-shown) + label,
+        .dark .fl-group textarea:focus + label,
+        .dark .fl-group textarea:not(:placeholder-shown) + label,
+        .dark .fl-group select:focus + label,
+        .dark .fl-group.has-value label,
+        .dark .fl-group input[type="date"]:focus + label,
+        .dark .fl-group input[type="date"]:not([value=""]) + label,
+        .dark .fl-group input[type="time"]:focus + label,
+        .dark .fl-group input[type="time"]:not([value=""]) + label {
+            color: #60a5fa;
+        }
+        .fl-group select { appearance: none; cursor: pointer; }
+        .fl-group textarea { resize: vertical; min-height: 80px; }
+        .fl-group.error input,
+        .fl-group.error textarea,
+        .fl-group.error select { border-bottom-color: #ef4444; }
+        .fl-error { color: #ef4444; font-size: 12px; margin-top: 4px; display: none; }
+        .fl-group.error .fl-error { display: block; }
+
+        /* ===== WhatsApp Pulse ===== */
+        @keyframes waPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 10px 30px rgba(37,211,102,0.4), 0 0 0 18px rgba(37,211,102,0); }
+        }
+        .wa-float { animation: waPulse 2.8s ease-in-out infinite; }
+        .wa-float:hover { transform: scale(1.1) translateY(-4px); }
+
+        /* ===== Premium Button Lift ===== */
+        .btn-lift {
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .btn-lift:hover {
+            transform: translateY(-3px);
+        }
+        .btn-lift:active {
+            transform: translateY(-1px);
+        }
+
+        /* ===== Success Animation ===== */
+        @keyframes successPop {
+            0% { opacity: 0; transform: scale(0.8); }
+            60% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .success-anim { animation: successPop 0.5s ease forwards; }
+
+        /* ===== Scroll lock ===== */
+        body.no-scroll { overflow: hidden; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100 font-sans min-h-screen">
@@ -47,8 +173,8 @@
                 <button id="theme-toggle" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                     <i data-lucide="moon" id="theme-icon"></i>
                 </button>
-                <button class="hidden sm:flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 transform active:scale-95 bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:shadow-lg hover:shadow-blue-500/30">
-                    Add Property
+                <button onclick="openBookingModal()" class="hidden sm:flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 transform active:scale-95 bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:shadow-lg hover:shadow-blue-500/30 btn-lift">
+                    Book a Visit
                 </button>
             </div>
         </div>
@@ -68,6 +194,16 @@
                     </h1>
                     <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">Explore an exclusive collection of luxury villas, penthouses, and modern apartments curated just for you.</p>
                     
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                        <button onclick="openBookingModal()" class="px-8 py-4 rounded-full font-semibold bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-xl hover:shadow-blue-500/40 transition-all btn-lift flex items-center gap-2">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                            Book a Site Visit
+                        </button>
+                        <a href="#property-grid" class="px-8 py-4 rounded-full font-semibold bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 transition-all btn-lift">
+                            Explore Properties
+                        </a>
+                    </div>
+
                     <div class="md:hidden w-full relative mb-8">
                         <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
                         <input type="text" id="mobile-search" placeholder="Search locations..." class="w-full bg-white/90 backdrop-blur-md rounded-full py-4 pl-12 pr-4 text-gray-900 shadow-xl outline-none focus:ring-2 focus:ring-blue-500">
@@ -174,14 +310,106 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Book Site Visit Card (Property Detail) -->
+                            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-6 shadow-xl text-white">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                                    <h3 class="text-xl font-bold">Schedule a Visit</h3>
+                                </div>
+                                <p class="text-blue-100 text-sm mb-5">Experience this property in person. Book an exclusive private viewing at your convenience.</p>
+                                <button onclick="openBookingModal(currentProperty ? currentProperty.title : '')" class="w-full py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-all btn-lift flex items-center justify-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    Book a Site Visit
+                                </button>
+                                <button onclick="openEnquiryModal(currentProperty ? currentProperty.title : '')" class="w-full mt-3 py-3 rounded-xl bg-white/15 backdrop-blur-sm text-white border border-white/30 font-semibold hover:bg-white/25 transition-all btn-lift flex items-center justify-center gap-2">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    Enquire Now
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- ===== ENQUIRY SECTION ===== -->
+        <section id="enquiry-section" class="py-20 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 mb-4 inline-block">Get in Touch</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Begin Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Property Journey</span></h2>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg mb-8 leading-relaxed">Whether you're seeking a specific residence or exploring possibilities, our advisors are here to guide you with expertise and discretion.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 flex-shrink-0">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                </div>
+                                <span>Response within 24 hours</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 flex-shrink-0">
+                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                </div>
+                                <span>Dedicated property advisor assigned</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 flex-shrink-0">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <span>Confidential & no obligation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 border border-gray-100 dark:border-gray-700">
+                        <form id="enquiryForm" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                                <div class="fl-group">
+                                    <input type="text" id="eq-name" placeholder=" " required>
+                                    <label for="eq-name">Full Name</label>
+                                    <div class="fl-error">Please enter your name</div>
+                                </div>
+                                <div class="fl-group">
+                                    <input type="tel" id="eq-phone" placeholder=" " required>
+                                    <label for="eq-phone">Phone Number</label>
+                                    <div class="fl-error">Please enter a valid phone number</div>
+                                </div>
+                            </div>
+                            <div class="fl-group mt-4">
+                                <input type="email" id="eq-email" placeholder=" " required>
+                                <label for="eq-email">Email Address</label>
+                                <div class="fl-error">Please enter a valid email address</div>
+                            </div>
+                            <div class="fl-group mt-4">
+                                <select id="eq-property">
+                                    <option value="">Select a property (optional)</option>
+                                </select>
+                                <label for="eq-property" style="top:6px;font-size:11px;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Interested Property</label>
+                            </div>
+                            <div class="fl-group mt-4">
+                                <textarea id="eq-message" placeholder=" " rows="3"></textarea>
+                                <label for="eq-message">Message</label>
+                            </div>
+                            <button type="submit" class="mt-6 w-full py-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg hover:shadow-blue-500/30 transition-all btn-lift flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                                Send Enquiry
+                            </button>
+                        </form>
+                        <div id="enquirySuccess" class="hidden text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mx-auto mb-4 success-anim">
+                                <i data-lucide="check" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Thank You</h3>
+                            <p class="text-gray-500 dark:text-gray-400">Your enquiry has been received. Our team will contact you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20 pt-16 pb-8 transition-colors duration-300">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-0 pt-16 pb-8 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div class="col-span-1 md:col-span-2">
@@ -220,6 +448,10 @@
                             <a href="mailto:contact@auraestate.in" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">contact@auraestate.in</a>
                         </li>
                     </ul>
+                    <button onclick="openBookingModal()" class="mt-5 w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg hover:shadow-blue-500/30 transition-all btn-lift flex items-center justify-center gap-2">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        Book a Site Visit
+                    </button>
                 </div>
             </div>
             <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 dark:text-gray-400">
@@ -232,6 +464,7 @@
         </div>
     </footer>
 
+    <!-- ===== LIGHTBOX ===== -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col hidden">
         <div class="flex justify-between items-center p-4 text-white">
             <div id="lightbox-counter" class="text-sm font-medium tracking-widest"></div>
@@ -243,6 +476,128 @@
             <button onclick="changeImage(-1)" class="absolute left-4 p-4 rounded-full bg-black/50 text-white hover:bg-white hover:text-black transition-all z-10"><i data-lucide="chevron-left" class="w-8 h-8"></i></button>
             <img id="lightbox-img" src="" alt="Fullscreen view" class="max-w-full max-h-[85vh] object-contain">
             <button onclick="changeImage(1)" class="absolute right-4 p-4 rounded-full bg-black/50 text-white hover:bg-white hover:text-black transition-all z-10"><i data-lucide="chevron-right" class="w-8 h-8"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <a href="https://wa.me/911234567890" target="_blank" rel="noopener" class="wa-float fixed bottom-6 right-6 z-[90] w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 text-white flex items-center justify-center shadow-2xl transition-transform duration-300 hover:scale-110" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- ===== ENQUIRY MODAL ===== -->
+    <div id="enquiryModal" class="modal-overlay fixed inset-0 z-[110] bg-black/60 backdrop-blur-md flex items-center justify-center p-4" role="dialog" aria-modal="true">
+        <div class="modal-panel bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-gray-100 dark:border-gray-800">
+            <div class="p-8">
+                <div class="flex items-start justify-between mb-6">
+                    <div>
+                        <h3 class="text-2xl font-extrabold">Property Enquiry</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Our advisor will respond within 24 hours.</p>
+                    </div>
+                    <button onclick="closeModal('enquiryModal')" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Close">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <form id="modalEnquiryForm" novalidate>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                        <div class="fl-group">
+                            <input type="text" id="me-name" placeholder=" " required>
+                            <label for="me-name">Full Name</label>
+                            <div class="fl-error">Please enter your name</div>
+                        </div>
+                        <div class="fl-group">
+                            <input type="tel" id="me-phone" placeholder=" " required>
+                            <label for="me-phone">Phone Number</label>
+                            <div class="fl-error">Please enter a valid phone number</div>
+                        </div>
+                    </div>
+                    <div class="fl-group mt-4">
+                        <input type="email" id="me-email" placeholder=" " required>
+                        <label for="me-email">Email Address</label>
+                        <div class="fl-error">Please enter a valid email address</div>
+                    </div>
+                    <div class="fl-group mt-4">
+                        <input type="text" id="me-property" placeholder=" " readonly class="!text-blue-600 dark:!text-blue-400 font-medium">
+                        <label for="me-property" style="top:6px;font-size:11px;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Interested Property</label>
+                    </div>
+                    <div class="fl-group mt-4">
+                        <textarea id="me-message" placeholder=" " rows="3"></textarea>
+                        <label for="me-message">Message</label>
+                    </div>
+                    <div class="flex gap-3 mt-6">
+                        <button type="button" onclick="closeModal('enquiryModal')" class="flex-1 py-3 rounded-xl font-semibold border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all btn-lift">Close</button>
+                        <button type="submit" class="flex-1 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg hover:shadow-blue-500/30 transition-all btn-lift">Submit</button>
+                    </div>
+                </form>
+                <div id="modalEnquirySuccess" class="hidden text-center py-8">
+                    <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mx-auto mb-4 success-anim">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Thank You</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Your enquiry has been received. Our property advisor will contact you shortly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOOKING MODAL ===== -->
+    <div id="bookingModal" class="modal-overlay fixed inset-0 z-[110] bg-black/60 backdrop-blur-md flex items-center justify-center p-4" role="dialog" aria-modal="true">
+        <div class="modal-panel bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-gray-100 dark:border-gray-800">
+            <div class="p-8">
+                <div class="flex items-start justify-between mb-6">
+                    <div>
+                        <h3 class="text-2xl font-extrabold">Book a Site Visit</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Schedule an exclusive private viewing.</p>
+                    </div>
+                    <button onclick="closeModal('bookingModal')" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Close">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <form id="bookingForm" novalidate>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                        <div class="fl-group">
+                            <input type="text" id="bk-name" placeholder=" " required>
+                            <label for="bk-name">Full Name</label>
+                            <div class="fl-error">Please enter your name</div>
+                        </div>
+                        <div class="fl-group">
+                            <input type="tel" id="bk-phone" placeholder=" " required>
+                            <label for="bk-phone">Phone Number</label>
+                            <div class="fl-error">Please enter a valid phone number</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mt-4">
+                        <div class="fl-group">
+                            <input type="date" id="bk-date" required>
+                            <label for="bk-date" style="top:6px;font-size:11px;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Preferred Date</label>
+                            <div class="fl-error">Please select a date</div>
+                        </div>
+                        <div class="fl-group">
+                            <input type="time" id="bk-time" required>
+                            <label for="bk-time" style="top:6px;font-size:11px;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Preferred Time</label>
+                            <div class="fl-error">Please select a time</div>
+                        </div>
+                    </div>
+                    <div class="fl-group mt-4">
+                        <input type="text" id="bk-property" placeholder=" " readonly class="!text-blue-600 dark:!text-blue-400 font-medium">
+                        <label for="bk-property" style="top:6px;font-size:11px;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Interested Property</label>
+                    </div>
+                    <div class="fl-group mt-4">
+                        <textarea id="bk-notes" placeholder=" " rows="3"></textarea>
+                        <label for="bk-notes">Additional Notes</label>
+                    </div>
+                    <div class="flex gap-3 mt-6">
+                        <button type="button" onclick="closeModal('bookingModal')" class="flex-1 py-3 rounded-xl font-semibold border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all btn-lift">Cancel</button>
+                        <button type="submit" class="flex-1 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg hover:shadow-blue-500/30 transition-all btn-lift">Book Visit</button>
+                    </div>
+                </form>
+                <div id="bookingSuccess" class="hidden text-center py-8">
+                    <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mx-auto mb-4 success-anim">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Visit Requested</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Your site visit request has been submitted successfully. Our team will confirm your appointment shortly.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -269,195 +624,15 @@
 
         // --- DATA ---
         const PROPERTIES = [
-            { 
-                id: 'p1', 
-                title: 'The Skyline Luxury Villa', 
-                price: '25,50,00,000', 
-                location: 'Bandra West, Mumbai', 
-                city: 'Mumbai', 
-                type: 'Villa', 
-                beds: 5, 
-                baths: 6, 
-                area: '6,500', 
-                parking: 3, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 2', 
-                age: '2 Years', 
-                description: 'Experience unparalleled luxury in this breathtaking ultra-modern villa. Featuring panoramic sea views, an infinity pool, smart home technology, and a grand double-height living space with a designer chandelier. The property includes a gourmet chef\'s kitchen, wine cellar, and a master suite with mountain views.', 
-                images: [IMG_OCEAN_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM, IMG_WINE, IMG_AERIAL], 
-                amenities: ['Infinity Pool', 'Gym', 'Garden', 'Security', 'Clubhouse', 'Power Backup', 'WiFi', 'Wine Cellar', 'Smart Home'], 
-                rating: 4.9, 
-                reviews: 124, 
-                featured: true 
-            },
-            { 
-                id: 'p2', 
-                title: 'Azure Oceanfront Penthouse', 
-                price: '₹18,50,00,000', 
-                location: 'Dona Paula, Goa', 
-                city: 'Goa', 
-                type: 'Penthouse', 
-                beds: 3, 
-                baths: 4, 
-                area: '3,200', 
-                parking: 2, 
-                status: 'Semi-Furnished', 
-                floor: '12th Floor', 
-                age: 'New', 
-                description: 'A masterpiece of design sitting high above the ocean. This stunning penthouse features wrap-around balconies, a private rooftop terrace with fire pit, and premium building amenities including spa and infinity pool. Floor-to-ceiling windows offer breathtaking sunset views over the Arabian Sea.', 
-                images: [IMG_PENTHOUSE_LIVING, IMG_ROOFTOP, IMG_MASTER_BED, IMG_BATHROOM, IMG_BEACH_HOUSE], 
-                amenities: ['Pool', 'Gym', 'Lift', 'Security', 'WiFi', 'Spa', 'Rooftop Terrace', 'Concierge'], 
-                rating: 4.8, 
-                reviews: 89, 
-                featured: true 
-            },
-            { 
-                id: 'p3', 
-                title: 'Serenity Woodland Estate', 
-                price: '₹32,00,00,000', 
-                location: 'Alibaug, Maharashtra', 
-                city: 'Alibaug', 
-                type: 'Estate', 
-                beds: 6, 
-                baths: 7, 
-                area: '8,400', 
-                parking: 4, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 1', 
-                age: '5 Years', 
-                description: 'Nestled in a private enclave, this estate blends rustic charm with modern luxury. The property features a stone and wood exterior, floor-to-ceiling glass walls overlooking the forest, a home theater, and a private library. Perfect for quiet retreats and entertaining guests in style.', 
-                images: [IMG_WOODLAND, IMG_GLASS_HOUSE, IMG_LIBRARY, IMG_GRAND_LIVING, IMG_SCANDI, IMG_KITCHEN], 
-                amenities: ['Garden', 'Security', 'Power Backup', 'Home Theater', 'Library', 'Forest View', 'Private Enclave'], 
-                rating: 5.0, 
-                reviews: 42, 
-                featured: true 
-            },
-            { 
-                id: 'p4', 
-                title: 'Mediterranean Lavender Villa', 
-                price: '₹15,75,00,000', 
-                location: 'Lonavala, Maharashtra', 
-                city: 'Lonavala', 
-                type: 'Villa', 
-                beds: 4, 
-                baths: 5, 
-                area: '5,200', 
-                parking: 2, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 1', 
-                age: '3 Years', 
-                description: 'Inspired by the charm of Provence, this stunning Mediterranean villa is surrounded by lavender gardens and olive groves. Features terracotta roof tiles, arched doorways, stone pathways, and a private courtyard. The perfect countryside retreat with modern amenities.', 
-                images: [IMG_MED_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM], 
-                amenities: ['Lavender Garden', 'Courtyard', 'Pool', 'Security', 'Power Backup', 'WiFi', 'Olive Grove'], 
-                rating: 4.7, 
-                reviews: 67, 
-                featured: false 
-            },
-            { 
-                id: 'p5', 
-                title: 'Tropical Beachfront Retreat', 
-                price: '₹22,00,00,000', 
-                location: 'Calangute, Goa', 
-                city: 'Goa', 
-                type: 'Beach House', 
-                beds: 4, 
-                baths: 4, 
-                area: '4,800', 
-                parking: 2, 
-                status: 'Fully Furnished', 
-                floor: 'Ground', 
-                age: '1 Year', 
-                description: 'A stunning beachfront property with a thatched roof pavilion, infinity pool blending into the ocean horizon, and lush tropical landscaping. This Bali-inspired villa offers the ultimate tropical getaway with modern luxury amenities and direct beach access.', 
-                images: [IMG_TROPICAL, IMG_BEACH_HOUSE, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], 
-                amenities: ['Beach Access', 'Infinity Pool', 'Tropical Garden', 'Pavilion', 'Security', 'WiFi', 'Spa'], 
-                rating: 4.9, 
-                reviews: 156, 
-                featured: true 
-            },
-            { 
-                id: 'p6', 
-                title: 'Colonial Grand Manor', 
-                price: '₹45,00,00,000', 
-                location: 'Lutyens Delhi, New Delhi', 
-                city: 'Delhi', 
-                type: 'Manor', 
-                beds: 8, 
-                baths: 10, 
-                area: '12,000', 
-                parking: 6, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 2', 
-                age: '10 Years', 
-                description: 'A magnificent colonial-style mansion featuring white columns, a circular driveway, manicured lawns, and mature oak trees. This heritage property combines timeless elegance with modern luxury, including a grand ballroom, wine cellar, and staff quarters.', 
-                images: [IMG_COLONIAL, IMG_GRAND_LIVING, IMG_LIBRARY, IMG_WINE, IMG_KITCHEN, IMG_MASTER_BED], 
-                amenities: ['Ballroom', 'Wine Cellar', 'Garden', 'Staff Quarters', 'Security', 'Pool', 'Tennis Court'], 
-                rating: 5.0, 
-                reviews: 34, 
-                featured: true 
-            },
-            { 
-                id: 'p7', 
-                title: 'Modern Urban Townhouse', 
-                price: '₹8,50,00,000', 
-                location: 'Koramangala, Bangalore', 
-                city: 'Bangalore', 
-                type: 'Townhouse', 
-                beds: 3, 
-                baths: 3, 
-                area: '2,800', 
-                parking: 2, 
-                status: 'Semi-Furnished', 
-                floor: 'Ground + 2', 
-                age: 'New', 
-                description: 'A sleek contemporary townhouse with a dark geometric facade, rooftop garden, and modern landscaping. Features open-plan living, smart home integration, and stunning city views from the rooftop terrace. Perfect for urban professionals.', 
-                images: [IMG_URBAN_TOWN, IMG_PENTHOUSE_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_ROOFTOP], 
-                amenities: ['Rooftop Garden', 'Smart Home', 'Security', 'Lift', 'WiFi', 'Gym Access'], 
-                rating: 4.6, 
-                reviews: 78, 
-                featured: false 
-            },
-            { 
-                id: 'p8', 
-                title: 'Scandinavian Hillside Home', 
-                price: '₹12,00,00,000', 
-                location: 'Manali, Himachal Pradesh', 
-                city: 'Manali', 
-                type: 'Chalet', 
-                beds: 4, 
-                baths: 4, 
-                area: '3,600', 
-                parking: 2, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 1', 
-                age: '2 Years', 
-                description: 'A beautiful Scandinavian-style home nestled in the Himalayan hills. Features light wood and white walls, large panoramic windows with mountain views, minimalist landscaping, and a cozy fireplace. The perfect mountain retreat for all seasons.', 
-                images: [IMG_SCANDI, IMG_MASTER_BED, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_BATHROOM], 
-                amenities: ['Mountain View', 'Fireplace', 'Garden', 'Security', 'Power Backup', 'WiFi', 'Heating'], 
-                rating: 4.8, 
-                reviews: 91, 
-                featured: false 
-            },
-            { 
-                id: 'p9', 
-                title: 'Glass Cliff House', 
-                price: '₹38,00,00,000', 
-                location: 'Mahabaleshwar, Maharashtra', 
-                city: 'Mahabaleshwar', 
-                type: 'Villa', 
-                beds: 5, 
-                baths: 6, 
-                area: '7,200', 
-                parking: 3, 
-                status: 'Fully Furnished', 
-                floor: 'Ground + 2', 
-                age: '1 Year', 
-                description: 'A dramatic cantilevered glass house perched on a hillside with breathtaking valley views. Features a reflecting pool, floor-to-ceiling glass walls, and seamless indoor-outdoor living. An architectural masterpiece for those who appreciate bold design.', 
-                images: [IMG_GLASS_HOUSE, IMG_GRAND_LIVING, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], 
-                amenities: ['Valley View', 'Reflecting Pool', 'Smart Home', 'Security', 'Power Backup', 'WiFi', 'Gym'], 
-                rating: 4.9, 
-                reviews: 53, 
-                featured: true 
-            }
+            { id: 'p1', title: 'The Skyline Luxury Villa', price: '₹25,50,00,000', location: 'Bandra West, Mumbai', city: 'Mumbai', type: 'Villa', beds: 5, baths: 6, area: '6,500', parking: 3, status: 'Fully Furnished', floor: 'Ground + 2', age: '2 Years', description: 'Experience unparalleled luxury in this breathtaking ultra-modern villa. Featuring panoramic sea views, an infinity pool, smart home technology, and a grand double-height living space with a designer chandelier. The property includes a gourmet chef\'s kitchen, wine cellar, and a master suite with mountain views.', images: [IMG_OCEAN_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM, IMG_WINE, IMG_AERIAL], amenities: ['Infinity Pool', 'Gym', 'Garden', 'Security', 'Clubhouse', 'Power Backup', 'WiFi', 'Wine Cellar', 'Smart Home'], rating: 4.9, reviews: 124, featured: true },
+            { id: 'p2', title: 'Azure Oceanfront Penthouse', price: '₹18,50,00,000', location: 'Dona Paula, Goa', city: 'Goa', type: 'Penthouse', beds: 3, baths: 4, area: '3,200', parking: 2, status: 'Semi-Furnished', floor: '12th Floor', age: 'New', description: 'A masterpiece of design sitting high above the ocean. This stunning penthouse features wrap-around balconies, a private rooftop terrace with fire pit, and premium building amenities including spa and infinity pool. Floor-to-ceiling windows offer breathtaking sunset views over the Arabian Sea.', images: [IMG_PENTHOUSE_LIVING, IMG_ROOFTOP, IMG_MASTER_BED, IMG_BATHROOM, IMG_BEACH_HOUSE], amenities: ['Pool', 'Gym', 'Lift', 'Security', 'WiFi', 'Spa', 'Rooftop Terrace', 'Concierge'], rating: 4.8, reviews: 89, featured: true },
+            { id: 'p3', title: 'Serenity Woodland Estate', price: '₹32,00,00,000', location: 'Alibaug, Maharashtra', city: 'Alibaug', type: 'Estate', beds: 6, baths: 7, area: '8,400', parking: 4, status: 'Fully Furnished', floor: 'Ground + 1', age: '5 Years', description: 'Nestled in a private enclave, this estate blends rustic charm with modern luxury. The property features a stone and wood exterior, floor-to-ceiling glass walls overlooking the forest, a home theater, and a private library. Perfect for quiet retreats and entertaining guests in style.', images: [IMG_WOODLAND, IMG_GLASS_HOUSE, IMG_LIBRARY, IMG_GRAND_LIVING, IMG_SCANDI, IMG_KITCHEN], amenities: ['Garden', 'Security', 'Power Backup', 'Home Theater', 'Library', 'Forest View', 'Private Enclave'], rating: 5.0, reviews: 42, featured: true },
+            { id: 'p4', title: 'Mediterranean Lavender Villa', price: '₹15,75,00,000', location: 'Lonavala, Maharashtra', city: 'Lonavala', type: 'Villa', beds: 4, baths: 5, area: '5,200', parking: 2, status: 'Fully Furnished', floor: 'Ground + 1', age: '3 Years', description: 'Inspired by the charm of Provence, this stunning Mediterranean villa is surrounded by lavender gardens and olive groves. Features terracotta roof tiles, arched doorways, stone pathways, and a private courtyard. The perfect countryside retreat with modern amenities.', images: [IMG_MED_VILLA, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_BATHROOM], amenities: ['Lavender Garden', 'Courtyard', 'Pool', 'Security', 'Power Backup', 'WiFi', 'Olive Grove'], rating: 4.7, reviews: 67, featured: false },
+            { id: 'p5', title: 'Tropical Beachfront Retreat', price: '₹22,00,00,000', location: 'Calangute, Goa', city: 'Goa', type: 'Beach House', beds: 4, baths: 4, area: '4,800', parking: 2, status: 'Fully Furnished', floor: 'Ground', age: '1 Year', description: 'A stunning beachfront property with a thatched roof pavilion, infinity pool blending into the ocean horizon, and lush tropical landscaping. This Bali-inspired villa offers the ultimate tropical getaway with modern luxury amenities and direct beach access.', images: [IMG_TROPICAL, IMG_BEACH_HOUSE, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], amenities: ['Beach Access', 'Infinity Pool', 'Tropical Garden', 'Pavilion', 'Security', 'WiFi', 'Spa'], rating: 4.9, reviews: 156, featured: true },
+            { id: 'p6', title: 'Colonial Grand Manor', price: '₹45,00,00,000', location: 'Lutyens Delhi, New Delhi', city: 'Delhi', type: 'Manor', beds: 8, baths: 10, area: '12,000', parking: 6, status: 'Fully Furnished', floor: 'Ground + 2', age: '10 Years', description: 'A magnificent colonial-style mansion featuring white columns, a circular driveway, manicured lawns, and mature oak trees. This heritage property combines timeless elegance with modern luxury, including a grand ballroom, wine cellar, and staff quarters.', images: [IMG_COLONIAL, IMG_GRAND_LIVING, IMG_LIBRARY, IMG_WINE, IMG_KITCHEN, IMG_MASTER_BED], amenities: ['Ballroom', 'Wine Cellar', 'Garden', 'Staff Quarters', 'Security', 'Pool', 'Tennis Court'], rating: 5.0, reviews: 34, featured: true },
+            { id: 'p7', title: 'Modern Urban Townhouse', price: '₹8,50,00,000', location: 'Koramangala, Bangalore', city: 'Bangalore', type: 'Townhouse', beds: 3, baths: 3, area: '2,800', parking: 2, status: 'Semi-Furnished', floor: 'Ground + 2', age: 'New', description: 'A sleek contemporary townhouse with a dark geometric facade, rooftop garden, and modern landscaping. Features open-plan living, smart home integration, and stunning city views from the rooftop terrace. Perfect for urban professionals.', images: [IMG_URBAN_TOWN, IMG_PENTHOUSE_LIVING, IMG_KITCHEN, IMG_MASTER_BED, IMG_ROOFTOP], amenities: ['Rooftop Garden', 'Smart Home', 'Security', 'Lift', 'WiFi', 'Gym Access'], rating: 4.6, reviews: 78, featured: false },
+            { id: 'p8', title: 'Scandinavian Hillside Home', price: '₹12,00,00,000', location: 'Manali, Himachal Pradesh', city: 'Manali', type: 'Chalet', beds: 4, baths: 4, area: '3,600', parking: 2, status: 'Fully Furnished', floor: 'Ground + 1', age: '2 Years', description: 'A beautiful Scandinavian-style home nestled in the Himalayan hills. Features light wood and white walls, large panoramic windows with mountain views, minimalist landscaping, and a cozy fireplace. The perfect mountain retreat for all seasons.', images: [IMG_SCANDI, IMG_MASTER_BED, IMG_GRAND_LIVING, IMG_KITCHEN, IMG_BATHROOM], amenities: ['Mountain View', 'Fireplace', 'Garden', 'Security', 'Power Backup', 'WiFi', 'Heating'], rating: 4.8, reviews: 91, featured: false },
+            { id: 'p9', title: 'Glass Cliff House', price: '₹38,00,00,000', location: 'Mahabaleshwar, Maharashtra', city: 'Mahabaleshwar', type: 'Villa', beds: 5, baths: 6, area: '7,200', parking: 3, status: 'Fully Furnished', floor: 'Ground + 2', age: '1 Year', description: 'A dramatic cantilevered glass house perched on a hillside with breathtaking valley views. Features a reflecting pool, floor-to-ceiling glass walls, and seamless indoor-outdoor living. An architectural masterpiece for those who appreciate bold design.', images: [IMG_GLASS_HOUSE, IMG_GRAND_LIVING, IMG_MASTER_BED, IMG_BATHROOM, IMG_AERIAL], amenities: ['Valley View', 'Reflecting Pool', 'Smart Home', 'Security', 'Power Backup', 'WiFi', 'Gym'], rating: 4.9, reviews: 53, featured: true }
         ];
 
         // --- STATE ---
@@ -468,6 +643,7 @@
         // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
             renderGrid(PROPERTIES);
+            populatePropertySelects();
             lucide.createIcons();
             
             document.getElementById('desktop-search').addEventListener('input', handleSearch);
@@ -483,9 +659,34 @@
             });
 
             calculateEMI();
+
+            // Form submissions
+            document.getElementById('modalEnquiryForm').addEventListener('submit', handleModalEnquiry);
+            document.getElementById('bookingForm').addEventListener('submit', handleBooking);
+            document.getElementById('enquiryForm').addEventListener('submit', handleInlineEnquiry);
+
+            // Clear errors on input
+            document.addEventListener('input', (e) => {
+                const group = e.target.closest('.fl-group');
+                if (group) group.classList.remove('error');
+            });
+
+            // ESC key to close modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
+                }
+            });
+
+            // Click outside to close modals
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) closeModal(overlay.id);
+                });
+            });
         });
 
-        // --- FUNCTIONS ---
+        // --- PROPERTY GRID ---
         function renderGrid(data) {
             const grid = document.getElementById('property-grid');
             if (data.length === 0) {
@@ -494,7 +695,7 @@
             }
 
             grid.innerHTML = data.map(p => `
-                <div onclick="openProperty('${p.id}')" class="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800 cursor-pointer flex flex-col">
+                <div class="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800 cursor-pointer flex flex-col" onclick="openProperty('${p.id}')">
                     <div class="relative h-64 overflow-hidden">
                         <img src="${p.images[0]}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" loading="lazy">
                         <div class="absolute top-4 left-4 flex gap-2">
@@ -515,11 +716,24 @@
                             <span class="flex items-center gap-1 text-sm"><i data-lucide="bath" class="w-4 h-4"></i> ${p.baths} Baths</span>
                             <span class="flex items-center gap-1 text-sm"><i data-lucide="square" class="w-4 h-4"></i> ${p.area} sqft</span>
                         </div>
-                        <button class="mt-auto w-full py-2 bg-gray-100 dark:bg-gray-800 rounded-xl font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white transition-colors">View Details</button>
+                        <div class="mt-auto flex gap-2">
+                            <button onclick="event.stopPropagation(); openProperty('${p.id}')" class="flex-1 py-2.5 rounded-xl font-medium text-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all btn-lift">View Details</button>
+                            <button onclick="event.stopPropagation(); openEnquiryModal('${p.title.replace(/'/g, "\\'")}')" class="flex-1 py-2.5 rounded-xl font-medium text-sm bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md hover:shadow-blue-500/30 transition-all btn-lift">Enquire Now</button>
+                        </div>
                     </div>
                 </div>
             `).join('');
             lucide.createIcons();
+        }
+
+        function populatePropertySelects() {
+            const select = document.getElementById('eq-property');
+            PROPERTIES.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.title;
+                opt.textContent = p.title;
+                select.appendChild(opt);
+            });
         }
 
         function handleSearch(e) {
@@ -644,6 +858,115 @@
             const emi = (p * ratePerMonth * Math.pow(1 + ratePerMonth, months)) / (Math.pow(1 + ratePerMonth, months) - 1);
             
             document.getElementById('emi-result').innerText = '₹' + Math.round(emi).toLocaleString('en-IN');
+        }
+
+        // ==================== LEAD GENERATION FUNCTIONS ====================
+
+        function openModal(id) {
+            const m = document.getElementById(id);
+            m.classList.add('active');
+            document.body.classList.add('no-scroll');
+            setTimeout(() => {
+                const first = m.querySelector('input:not([readonly]), textarea, select');
+                if (first) first.focus();
+            }, 150);
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            m.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            // Reset form after animation
+            setTimeout(() => {
+                const form = m.querySelector('form');
+                const success = m.querySelector('[id$="Success"]');
+                if (form) {
+                    form.reset();
+                    form.style.display = '';
+                    form.querySelectorAll('.fl-group').forEach(g => g.classList.remove('error'));
+                }
+                if (success) success.classList.add('hidden');
+            }, 350);
+        }
+
+        function openEnquiryModal(propertyName = '') {
+            const form = document.getElementById('modalEnquiryForm');
+            const success = document.getElementById('modalEnquirySuccess');
+            form.style.display = '';
+            success.classList.add('hidden');
+            form.reset();
+            form.querySelectorAll('.fl-group').forEach(g => g.classList.remove('error'));
+            document.getElementById('me-property').value = propertyName;
+            openModal('enquiryModal');
+        }
+
+        function openBookingModal(propertyName = '') {
+            const form = document.getElementById('bookingForm');
+            const success = document.getElementById('bookingSuccess');
+            form.style.display = '';
+            success.classList.add('hidden');
+            form.reset();
+            form.querySelectorAll('.fl-group').forEach(g => g.classList.remove('error'));
+            document.getElementById('bk-property').value = propertyName || '';
+            openModal('bookingModal');
+        }
+
+        function validateForm(form) {
+            let valid = true;
+            form.querySelectorAll('.fl-group').forEach(g => g.classList.remove('error'));
+            form.querySelectorAll('[required]').forEach(el => {
+                const val = el.value.trim();
+                let fieldValid = val.length > 0;
+                if (el.type === 'email' && val) {
+                    fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+                }
+                if (el.type === 'tel' && val) {
+                    fieldValid = /^[\d\s+\-()]{7,}$/.test(val);
+                }
+                if (!fieldValid) {
+                    el.closest('.fl-group').classList.add('error');
+                    valid = false;
+                }
+            });
+            return valid;
+        }
+
+        function showSuccessMessage(formEl, successEl, delay = 2500) {
+            formEl.style.display = 'none';
+            successEl.classList.remove('hidden');
+            lucide.createIcons();
+            setTimeout(() => {
+                const modalId = formEl.closest('.modal-overlay')?.id;
+                if (modalId) closeModal(modalId);
+            }, delay);
+        }
+
+        function handleModalEnquiry(e) {
+            e.preventDefault();
+            if (!validateForm(e.target)) return;
+            showSuccessMessage(e.target, document.getElementById('modalEnquirySuccess'));
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            if (!validateForm(e.target)) return;
+            showSuccessMessage(e.target, document.getElementById('bookingSuccess'));
+        }
+
+        function handleInlineEnquiry(e) {
+            e.preventDefault();
+            if (!validateForm(e.target)) return;
+            const form = e.target;
+            const success = document.getElementById('enquirySuccess');
+            form.style.display = 'none';
+            success.classList.remove('hidden');
+            lucide.createIcons();
+            setTimeout(() => {
+                form.reset();
+                form.style.display = '';
+                success.classList.add('hidden');
+                form.querySelectorAll('.fl-group').forEach(g => g.classList.remove('error'));
+            }, 4000);
         }
     </script>
 </body>
